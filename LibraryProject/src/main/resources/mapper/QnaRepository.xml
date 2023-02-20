@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lec.spring.repository.QnaRepository">
+
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.Qna"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO qna
+            (subject, content, user_id)
+        VALUES
+            (#{subject}, #{content}, #{user.id})
+    </insert>
+
+    <!-- 반복해서 사용될 쿼리문은 sql 태그로 정의 include 태그로 가져다 쓸수 있다 -->
+    <sql id="SELECT_BASE">
+        SELECT
+            q.id "q_id",
+            q.subject "q_subject",
+            q.content "q_content",
+            q.regdate "q_regdate",
+            u.id "u_id",
+            u.username "u_username",
+            u.name "u_name"
+        FROM
+            qna q, user u
+        WHERE
+            q.user_id = u.id
+    </sql>
+    <!-- JOIN 문으로 여러 테이블의 데이터 매핑 받기 -->
+    <resultMap id="mapUser" type="com.lec.spring.domain.User">
+        <result column="u_id" property="id"/>
+        <result column="u_username" property="username"/>
+        <result column="u_name" property="name"/>
+    </resultMap>
+
+    <resultMap id="mapQna" type="com.lec.spring.domain.Qna">
+        <result column="q_id" property="id"/>
+        <result column="q_subject" property="subject"/>
+        <result column="q_content" property="content"/>
+        <result column="q_regdate" property="regDate"/>
+        <collection property="user" resultMap="mapUser"/>
+    </resultMap>
+
+    <select id="findById" resultMap="mapQna">
+        <include refid="SELECT_BASE"/>
+            AND q.id = #{id}
+        ORDER BY q.id DESCQ
+    </select>
+
+    <select id="findAll" resultMap="mapQna">
+        <include refid="SELECT_BASE"/>
+        ORDER BY q.id DESC
+    </select>
+
+    <update id="update" flushCache="true"
+        parameterType="com.lec.spring.domain.Qna">
+        UPDATE qna
+        SET subject = #{subject}, content = #{content}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" flushCache="true"
+        parameterType="com.lec.spring.domain.Qna">
+        DELETE FROM qna WHERE id = #{id}
+    </delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

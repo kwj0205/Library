@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lec.spring.repository.UserRepository">
+    <sql id="SELECT_BASE">
+        SELECT
+        id "id"
+        , username "username"
+        , password "password"
+        , name "name"
+        , phonenumber "phonenumber"
+        , email "email"
+        FROM user
+    </sql>
+
+    <select id="findById" resultType="com.lec.spring.domain.User">
+        <include refid="SELECT_BASE"/>
+        WHERE
+        id = #{id}
+    </select>
+
+    <select id="findByUsername" resultType="com.lec.spring.domain.User">
+        <include refid="SELECT_BASE"/>
+        WHERE
+        username = #{username}
+    </select>
+
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.User"
+            keyProperty="id" useGeneratedKeys="true" keyColumn="id">
+        INSERT INTO user(username, password, name, phonenumber, email)
+        VALUE (#{username}, #{password}, #{name}, #{phonenumber}, #{email})
+    </insert>
+
+    <update id="update" flushCache="true" parameterType="com.lec.spring.domain.User">
+        UPDATE user SET username = #{username}, password = #{password}, name = #{name}, phonenumber = #{phonenumber}, email = #{email}
+        WHERE id = #{id}
+    </update>
+
+</mapper>
