@@ -80,6 +80,16 @@ public class UserController {
         return page;
     }
 
+    @GetMapping("/regUpdate")
+    public void regUpdate(String username, Model model){
+        model.addAttribute("userInfo", userService.findByUsername(username));
+    }
+
+    @PostMapping("/regUpdate")
+    public String regUpdateOk(){
+        return null;
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder){
         binder.setValidator(new UserValidator());

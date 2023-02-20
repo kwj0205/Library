@@ -15,4 +15,8 @@ public interface UserRepository {
 
     int update(User user);
 
+    // 특정 회원 정보 수정
+    int userUpdate(User user);
+
+
 }
