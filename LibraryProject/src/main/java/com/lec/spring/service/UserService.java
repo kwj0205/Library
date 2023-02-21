@@ -6,6 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -38,11 +42,25 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));   // password 는 암호화 해서 저장해야 한다.
         userRepository.save(user);      // 새로 회원(User) 저장. id 값 받아옴
 
-        //
-
         return 1;
     }
 
+    // 회원정보 수정
+
+    public List<User> selectById(Long id) {
+        List<User> userInfo = new ArrayList<>();
+        User user = userRepository.findById(id);
+
+        if(user != null){
+            userInfo.add(user);
+        }
+
+        return userInfo;
+    }
+
+    public int userUpdate(User user){
+        return userRepository.userUpdate(user);
+    }
 
 
 

@@ -38,4 +38,10 @@
         WHERE id = #{id}
     </update>
 
+    <update id="userUpdate" flushCache="true"
+            parameterType="com.lec.spring.domain.User">
+        UPDATE user SET username = #{username}, password = #{password}, name = #{name}, phonenumber = #{phonenumber}, email = #{email}
+        WHERE id = #{id}
+    </update>
+
 </mapper>

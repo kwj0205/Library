@@ -80,14 +80,18 @@ public class UserController {
         return page;
     }
 
-    @GetMapping("/regUpdate")
-    public void regUpdate(String username, Model model){
-        model.addAttribute("userInfo", userService.findByUsername(username));
+    // 회원 정보 수정
+
+    @GetMapping("/userUpdate")
+    public void userUpdate(Long id, Model model){
+        model.addAttribute("userInfo", userService.selectById(id));
     }
 
-    @PostMapping("/regUpdate")
-    public String regUpdateOk(){
-        return null;
+    @PostMapping("/userUpdate")
+    public String userUpdateOk(User user, Model model){
+        model.addAttribute("result", userService.userUpdate(user));
+        model.addAttribute("dto", user);
+        return "user/userUpdateOk";
     }
 
     @InitBinder
