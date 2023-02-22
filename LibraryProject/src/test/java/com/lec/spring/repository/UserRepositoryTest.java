@@ -23,12 +23,12 @@ class UserRepositoryTest {
         System.out.println(userRepository.userUpdate(user));
 
         User user = User.builder()
-                .id(4L)
-                .username("user4")
-                .name("김나나")
+                .id(5L)
+                .username("USER5")
+                .name("이나나")
                 .password("$2a$10$Mz6NfC9oamrjc3JTSuzf4u5qJ5096d3kk7Z2TBOWbKHYBJ0KVbVkq")
-                .email("nnn@ccc.com")
-                .phonenumber("010-6666-8088")
+                .email("bbbb@nnn.com")
+                .phonenumber("010-5555-8888")
                 .build();
         userRepository.userUpdate(user);
         System.out.println(userRepository.findById(4L));

@@ -50,7 +50,6 @@ public class UserService {
     public List<User> selectById(Long id) {
         List<User> userInfo = new ArrayList<>();
         User user = userRepository.findById(id);
-
         if(user != null){
             userInfo.add(user);
         }
