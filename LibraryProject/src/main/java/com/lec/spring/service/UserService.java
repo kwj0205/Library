@@ -4,6 +4,8 @@ import com.lec.spring.domain.User;
 import com.lec.spring.repository.UserRepository;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,6 +57,17 @@ public class UserService {
         }
 
         return userInfo;
+    }
+
+    public void pwUpdate(User user) throws Exception{
+
+        // 회원 비밀번호 인코딩 객체 선언
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        String securePw = encoder.encode(user.getPassword());
+        user.setPassword(securePw);
+
+        userRepository.pwUpdate(user);
     }
 
     public int userUpdate(User user){

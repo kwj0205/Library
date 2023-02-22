@@ -3,8 +3,13 @@ package com.lec.spring.controller;
 import com.lec.spring.domain.User;
 import com.lec.spring.domain.UserValidator;
 import com.lec.spring.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,10 +22,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+//    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private UserService userService;
 
@@ -91,6 +99,18 @@ public class UserController {
     public String userUpdateOk(User user, Model model){
         model.addAttribute("result", userService.userUpdate(user));
         model.addAttribute("dto", user);
+        return "user/userUpdateOk";
+    }
+
+    @PostMapping("/userUpdate")
+    public String pwUpdate(User user, HttpSession session) throws Exception {
+
+        userService.pwUpdate(user);
+
+        user.setPassword(user.getPassword());
+
+        userService.userUpdate(user);
+
         return "user/userUpdateOk";
     }
 

@@ -21,5 +21,7 @@ public interface UserRepository {
     // 특정 회원 정보 수정
     int userUpdate(User user);
 
+    // 비밀번호 변경
+    void pwUpdate(User user) throws Exception;
 
 }
