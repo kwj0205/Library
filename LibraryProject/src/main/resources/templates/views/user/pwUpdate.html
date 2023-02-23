@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}">
 
-    <title>회원가입</title>
+    <title>비밀번호 수정</title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 
     <div class="row mt-5">
         <div class="col-12 text-center">
-            <h1>회원가입을 환영합니다</h1>
+            <h1>비밀번호 수정</h1>
         </div>
     </div>
     <div class="row mt-5">
@@ -25,20 +25,15 @@
         </div>
     </div>
     <div class="row">
-        <form method="POST" th:action="@{/user/pwUpdate}">
-
-<!--            <div class="form-group mt-3">-->
-<!--                <label for="password">현재 비밀번호</label>-->
-<!--                <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" required>-->
-<!--            </div>-->
-<!--            -->
+        <form method="POST" th:action="@{/user/pwUpdate}" th:with="user=${#authentication.getPrincipal().getUser()}">
+            <input type="hidden" name="id" th:value="${user.id}"/>
             <div class="form-group mt-3">
                 <label for="password">새 비밀번호</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" required>
+                <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
             </div>
             <div class="form-group mt-3">
-                <label for="re_password">비밀번호 확인</label>   <!--/* binding 을 위해 hyphen 사용 자제 */-->
-                <input type="password" class="form-control" id="re_password" name="re_password" placeholder="비밀번호 확인" required>
+                <label for="re_password">새 비밀번호 확인</label>   <!--/* binding 을 위해 hyphen 사용 자제 */-->
+                <input type="password" class="form-control" id="re_password" name="re_password" placeholder="비밀번호 확인">
             </div>
 
             <button type="submit" class="w-100 btn btn-lg btn-light mt-3">회원가입</button>

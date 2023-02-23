@@ -47,6 +47,7 @@
     <update id="pwUpdate" flushCache="true"
             parameterType="com.lec.spring.domain.User">
         UPDATE user SET password = #{password}
+        WHERE id = #{id}
     </update>
 
 

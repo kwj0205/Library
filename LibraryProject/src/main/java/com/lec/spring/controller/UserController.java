@@ -28,8 +28,6 @@ import java.util.logging.Logger;
 @RequestMapping("/user")
 public class UserController {
 
-//    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
     private UserService userService;
 
     @Autowired
@@ -102,16 +100,17 @@ public class UserController {
         return "user/userUpdateOk";
     }
 
-    @PostMapping("/userUpdate")
-    public String pwUpdate(User user, HttpSession session) throws Exception {
+    @GetMapping("/pwUpdate")
+    public void pwUpdate(Long id, Model model) {
+        model.addAttribute("userPw", userService.selectById(id));
+    }
 
-        userService.pwUpdate(user);
+    @PostMapping("/pwUpdate")
+    public String pwUpdate(User user, HttpSession session, Model model) {
+        model.addAttribute("result", userService.pwUpdate(user));
+        model.addAttribute("dto", user);
 
-        user.setPassword(user.getPassword());
-
-        userService.userUpdate(user);
-
-        return "user/userUpdateOk";
+        return "user/pwUpdateOk";
     }
 
     @InitBinder

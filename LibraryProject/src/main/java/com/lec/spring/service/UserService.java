@@ -59,21 +59,19 @@ public class UserService {
         return userInfo;
     }
 
-    public void pwUpdate(User user) throws Exception{
+    public int userUpdate(User user){
+        return userRepository.userUpdate(user);
+    }
 
-        // 회원 비밀번호 인코딩 객체 선언
+    public int pwUpdate(User user){
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         String securePw = encoder.encode(user.getPassword());
         user.setPassword(securePw);
 
-        userRepository.pwUpdate(user);
+        return userRepository.pwUpdate(user);
+
     }
-
-    public int userUpdate(User user){
-        return userRepository.userUpdate(user);
-    }
-
-
 
 }
