@@ -106,7 +106,7 @@ public class UserController {
     }
 
     @PostMapping("/pwUpdate")
-    public String pwUpdate(User user, Model model) {
+    public String pwUpdateOk(User user, Model model) {
         model.addAttribute("result", userService.pwUpdate(user));
         model.addAttribute("dto", user);
 
