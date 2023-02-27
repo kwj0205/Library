@@ -4,32 +4,11 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="/intro.css">
+  <link rel="stylesheet"  th:href="@{/css/intro.css}">
   <title>도서관 소개</title>
 </head>
 <body>
-<div id="wrap">
-  <header>
-    <div id="login">
-      <a th:href="@{/user/login}">로그인</a>
-      <a th:href="@{/user/register}">회원가입</a>
-    </div>
-    <div id="logo">
-      <a href="#">
-        <img src="magic-book.png" id="logo_img">
-        <div id="logo_text">WSD 도서관</div>
-      </a>
-    </div>
-  </header>
-</div>
-<nav id="menubar">
-  <ul>
-    <li><a href="#" id="click">도서관 소개</a></li>
-    <li><a href="book.html" class="line">도서</a></li>
-    <li><a href="#" class="line">QnA</a></li>
-    <li><a href="#" class="line">마이페이지</a></li>
-  </ul>
-</nav>
+<th:block th:insert="~{common/mheader::header}"></th:block>
 <article>
   <div>
     <p>도서관 소개</p>
@@ -40,9 +19,10 @@
     <div id="map" style="width: 500px; height: 400px;"></div>
   </div>
   <div id="intro_img">
-    <img src="intro.jpg" style="width: 500px;">
+    <img th:src="@{/img/intro.jpg}" style="width: 500px;">
   </div>
 </article>
+
 </body>
-<script src="map.js"></script>
+<script th:src="@{/js/map.js}"></script>
 </html>

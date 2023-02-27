@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<th:block th:fragment="header">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/intro.css}">
+  <div id="wrap">
+      <div id="login" sec:authorize="isAnonymous()">
+        <!-- 로그인하지 않았을때(anonymous 상태) 로그인 form -->
+        <a th:href="@{/user/login}">로그인</a>
+        <a th:href="@{/user/register}">회원가입</a>
+        <!-- 로그인하지 않았을때(anonymous 상태) 보이는 메뉴 -->
+      </div>
+      <div id="user">
+        <form th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
+          <span><a id="name">[[${user.username}]]([[${user.name}]]) 님 환영합니다</a></span>
+          <span><a th:href="@{/user/userUpdate(id=${user.id})}">회원정보 수정</a></span>
+          <span><a th:href="@{/user/pwUpdate(id=${user.id})}">비밀번호 수정</a></span>
+        </form>
+      </div>
+      <div id="logo">
+        <a href="#">
+          <img th:src="@{/img/magic-book.png}" id="logo_img">
+          <div id="logo_text">WSD 도서관</div>
+        </a>
+      </div>
+  </div>
+  <nav id="menubar">
+    <ul>
+      <li><a href="#" id="click">도서관 소개</a></li>
+      <li><a href="book.html" class="line">도서</a></li>
+      <li><a href="#" class="line">QnA</a></li>
+      <li sec:authorize="isAuthenticated()"><a href="#" class="line">마이페이지</a></li>
+    </ul>
+  </nav>
+<script th:src="@{/js/map.js}"></script>
+</th:block>
+</html>

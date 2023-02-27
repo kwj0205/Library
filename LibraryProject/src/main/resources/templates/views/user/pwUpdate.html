@@ -12,7 +12,12 @@
 </head>
 
 <body>
+<th:block th:insert="~{common/mheader::header}"></th:block>
+
+<br><br><br><br><br><br>
+
 <div class="container mt-3">
+
 
     <div class="row mt-5">
         <div class="col-12 text-center">
@@ -24,6 +29,7 @@
             <!--/* 에러메세지 */-->
         </div>
     </div>
+   <div class="d-grid gap-2 col-6 mx-auto">
     <div class="row">
         <form method="POST" th:action="@{/user/pwUpdate}" th:with="user=${#authentication.getPrincipal().getUser()}">
             <input type="hidden" name="id" th:value="${user.id}"/>
@@ -39,6 +45,7 @@
             <button type="submit" class="w-100 btn btn-lg btn-light mt-3">수정완료</button>
         </form>
     </div>
+   </div>
 
 </div>
 

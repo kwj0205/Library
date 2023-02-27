@@ -5,10 +5,10 @@
 
 <mapper namespace="com.lec.spring.repository.BookRepository">
 
-    <select id="findByTitle" resultType="com.lec.spring.domain.book">
-        <include refid="SELECT_BASE"/>
-            WHERE
-                title = #{title}
-    </select>
+<!--    <select id="findByTitle" resultType="com.lec.spring.domain.book">-->
+<!--        <include refid="SELECT_BASE"/>-->
+<!--            WHERE-->
+<!--                title = #{title}-->
+<!--    </select>-->
 
 </mapper>

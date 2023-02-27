@@ -59,6 +59,28 @@ article{
     border-bottom: 1px solid white;
 }
 
+
+#user{
+    margin: 0 70px;
+    position: absolute;
+    top: 35%;
+    right: 10px;
+    /* line-height: 70px; */
+}
+
+#user form span a{
+    color: white;
+}
+
+#user form span a{
+    margin-left: 30px;
+}
+
+#user form span a:hover{
+    border-bottom: 1px solid white;
+}
+
+
 nav{
     position: sticky;
     top: 0px;
