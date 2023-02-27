@@ -67,6 +67,7 @@ public class BoardController {
         return "board/deleteOk";
     }
 
+
     // 이 컨트롤러 클래스의 handler 에서 폼 데이터를 바인딩 할때 검증하는 Validator 객체 지정
     @InitBinder
     public void initBinder(WebDataBinder binder){

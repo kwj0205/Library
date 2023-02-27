@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/checkout.css}">
+  <title>책 상세페이지</title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<div id="wrap">
+  <header>
+    <div id="login">
+      <a href="#">로그인</a>
+      <a href="#">회원가입</a>
+    </div>
+    <div id="logo">
+      <a href="#">
+        <img src="/img/magic-book.png" id="logo_img">
+        <div id="logo_text">WSD 도서관</div>
+      </a>
+    </div>
+  </header>
+</div>
+<nav id="menubar">
+  <ul>
+    <li><a th:href="@{/library/intro}" class="line">도서관 소개</a></li>
+    <li><a th:href="@{/library/book}" id="click">도서</a></li>
+    <li><a href="#" class="line">QnA</a></li>
+    <li><a href="#" class="line">마이페이지</a></li>
+  </ul>
+</nav>
+<section>
+  <div id="box">
+    <p id="title"><b>도서</b> </p>
+    <div id="thumbnail"></div>
+    <div id="document">
+      <div id="content"></div>
+      <div id="authors">저자 : </div>
+      <div id="publisher">출판사 : </div>
+      <div id="translators">번역자 : </div>
+      <div id="datetime">발행년도 : </div>
+      <div id="isbn">ISBN : </div>
+    </div>
+  </div>
+  </div>
+  <div id="detail">상세정보</div><div id="url"></div>
+  <div id="information"></div>
+  <div id="button">
+    <button type="button" class="button">대출하기</button>
+    <button type="button" class="button">예약하기</button>
+  </div>
+</section>
+<script th:src="@{/js/checkout.js}"></script>
+</body>
+</html>

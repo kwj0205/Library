@@ -7,4 +7,3 @@ SELECT * FROM `user` ORDER BY id DESC;
 
 SELECT * FROM QnA ORDER BY id DESC;
 
-
