@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/")
-public class HomeController {
-    public HomeController(){
+public class MenuController {
+    public MenuController(){
         System.out.println(getClass().getName() + "() 생성");
     }
 
     // /home
-    @RequestMapping("/home")
-    public void home() {}
+    @RequestMapping("/menu")
+    public void menu() {}
 
     @RequestMapping("/auth")
     @ResponseBody

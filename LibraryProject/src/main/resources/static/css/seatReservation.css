@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-weight: 600px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+article {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#wrap {
+  position: relative;
+  background-color: rgb(85, 113, 83);
+}
+
+#logo {
+  padding: 10px;
+}
+
+#logo_img {
+  width: 50px;
+  margin-left: 20px;
+}
+
+#logo_text {
+  display: inline-block;
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+  text-shadow: 0 2px 3px rgb(0, 0, 0, 1);
+  position: absolute;
+  top: 30%;
+  left: 85px;
+}
+
+#login {
+  margin: 0 70px;
+  position: absolute;
+  top: 35%;
+  right: 10px;
+  /* line-height: 70px; */
+}
+
+#login a {
+  color: white;
+}
+
+#login a {
+  margin-left: 30px;
+}
+
+#login a:hover {
+  border-bottom: 1px solid white;
+}
+
+nav {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  box-shadow: 0 3px 5px rgb(0, 0, 0, 0.1);
+}
+
+#menubar {
+  margin: auto;
+}
+
+#menubar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#menubar ul li a {
+  position: relative;
+  text-decoration: none;
+  padding: 12px 0;
+  margin: 0 100px;
+  display: block;
+}
+
+.line::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  border-bottom: 3px solid rgb(85, 113, 83);
+  left: 0;
+  bottom: 0;
+  transform: scaleX(0);
+  transition: all 0.2s;
+}
+
+.line:hover::after {
+  transform: scaleX(1);
+}
+
+.line:hover {
+  color: rgb(85, 113, 83);
+}
+
+#click {
+  color: rgb(85, 113, 83);
+  border-bottom: 3px solid rgb(85, 113, 83);
+  bottom: 3px;
+}
+
+body {
+  height: 2000px;
+}

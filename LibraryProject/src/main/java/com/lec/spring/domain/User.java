@@ -21,4 +21,8 @@ public class User {
     private String name;        // 회원 이름
     private String phonenumber; // 회원 전화번호
     private String email;       // 회원 이메일
+
+    public Long getId() {
+        return id;
+    }
 }

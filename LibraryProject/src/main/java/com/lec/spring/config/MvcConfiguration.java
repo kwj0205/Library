@@ -22,6 +22,10 @@ public class MvcConfiguration {
                     .addResourceHandler("/upload/**")
                     .addResourceLocations("file:upload/")
             ;
+            registry
+                    .addResourceHandler("/**")
+                    .addResourceLocations("classpath:/templates/", "classpath:/static/")
+            ;
         }
     }
 }

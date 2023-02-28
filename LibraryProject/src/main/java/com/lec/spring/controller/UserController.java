@@ -3,8 +3,13 @@ package com.lec.spring.controller;
 import com.lec.spring.domain.User;
 import com.lec.spring.domain.UserValidator;
 import com.lec.spring.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/user")
@@ -92,6 +98,19 @@ public class UserController {
         model.addAttribute("result", userService.userUpdate(user));
         model.addAttribute("dto", user);
         return "user/userUpdateOk";
+    }
+
+    @GetMapping("/pwUpdate")
+    public void pwUpdate(Long id, Model model) {
+        model.addAttribute("userPw", userService.selectById(id));
+    }
+
+    @PostMapping("/pwUpdate")
+    public String pwUpdateOk(User user, Model model) {
+        model.addAttribute("result", userService.pwUpdate(user));
+        model.addAttribute("dto", user);
+
+        return "user/pwUpdateOk";
     }
 
     @InitBinder

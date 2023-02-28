@@ -12,6 +12,10 @@
 </head>
 
 <body>
+<th:block th:insert="~{common/mheader::header}"></th:block>
+
+<br><br><br><br><br><br>
+
 <div class="container mt-3">
 
     <div class="row mt-5">
@@ -20,10 +24,11 @@
         </div>
     </div>
     <div class="row mt-5">
-        <div class="col-12 text-danger" th:text="${error }">
+        <div class="col-12 text-danger" th:text="${error}">
             <!--/* 에러메세지 */-->
         </div>
     </div>
+   <div class="d-grid gap-2 col-6 mx-auto">
     <div class="row">
         <form method="POST" th:action="@{/user/register}">
             <div class="form-group mt-3">
@@ -54,7 +59,7 @@
             <button type="submit" class="w-100 btn btn-lg btn-light mt-3">회원가입</button>
         </form>
     </div>
-
+  </div>
 </div>
 
 </body>

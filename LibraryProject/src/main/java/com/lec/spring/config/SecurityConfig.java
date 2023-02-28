@@ -48,7 +48,7 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/")     // '직접 /login' → /loginOk 에서 성공하면 "/" 로 이동시키기
 
                         // 로그인 성공직후 수행할 코드
-                        .successHandler(new CustomLoginSuccessHandler("/home"))
+                        .successHandler(new CustomLoginSuccessHandler("/menu"))
 
                         // 로그인 실패하면 수행할 코드
                         .failureHandler(new CustomLoginFailureHandler())

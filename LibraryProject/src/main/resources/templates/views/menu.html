@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet"  th:href="@{/css/menu.css}">
+  <title>도서관 소개</title>
+</head>
+<body>
+<th:block th:insert="~{common/mheader::header}"></th:block>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<div class="search">
+  <input type="text" placeholder="검색어 입력">
+</div>
+
+</body>
+<script th:src="@{/js/menu.js}"></script>
+</html>

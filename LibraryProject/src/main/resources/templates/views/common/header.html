@@ -31,6 +31,7 @@
                         <span class="text-light p-2"><span TODO="">[[${user.username}]]([[${user.name}]])</span> 님 환영합니다</span>
                         <span><button class="btn btn-danger" type="submit">로그아웃</button></span>
                         <span><a class="btn btn-danger" th:href="@{/user/userUpdate(id=${user.id})}">회원정보 수정</a></span>
+                        <span><a class="btn btn-danger" th:href="@{/user/pwUpdate(id=${user.id})}">비밀번호 수정</a></span>
                   </span>
                 </form>
             </div>
