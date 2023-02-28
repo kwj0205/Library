@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +15,15 @@
 <div id="wrap">
   <header>
     <div id="login">
-      <a href="#">로그인</a>
-      <a href="#">회원가입</a>
+      <!-- 로그인하지 않았을때(anonymous 상태) 보이는 메뉴 -->
+      <li class="nav-item" sec:authorize="isAnonymous()">
+        <a class="nav-link" th:href="@{../user/login}">로그인</a>
+        <a class="nav-link" th:href="@{../user/register}">회원가입</a>
+      </li>
+      <!-- 로그인한 사람에게만 보이는 메뉴 -->
+      <form class="logout" th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
+        <span><button class="logoutBtn" type="submit">로그아웃</button></span>
+      </form>
     </div>
     <div id="logo">
       <a href="#">
@@ -34,14 +42,14 @@
   </ul>
 </nav>
 <section>
-  <form th:action="@{/library/checkout}" method="post">
+  <form th:action="@{/info/rent}" method="post">
   <div id="box">
-    <input type="text" id="title" name="bookname" th:value="${bookname}"><b>도서</b> </input>
+    <div id="title"><b>도서</b>[[${bookname}]]</div>
     <div id="thumbnail"></div>
     <div id="document">
       <div id="content"></div>
-      <input type="text" id="authors" name="author" th:value="${author}">저자 : </input>
-      <input type="text" id="publisher" name="publisher" th:value="${publisher}">출판사 : </input>
+      <div id="authors">저자 : [[${author}]]</div>
+      <div id="publisher">출판사 : </div>
       <div id="translators">번역자 : </div>
       <div id="datetime">발행년도 : </div>
       <div id="isbn">ISBN : </div>

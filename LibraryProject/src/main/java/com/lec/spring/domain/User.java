@@ -3,12 +3,16 @@ package com.lec.spring.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class User {
     private Long id;
+
+    private LocalDateTime regDate;
 
     private String username;    // 회원 아이디
     @JsonIgnore

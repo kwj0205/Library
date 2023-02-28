@@ -5,10 +5,91 @@
 
 <mapper namespace="com.lec.spring.repository.BookRepository">
 
-<!--    <select id="findByTitle" resultType="com.lec.spring.domain.book">-->
-<!--        <include refid="SELECT_BASE"/>-->
-<!--            WHERE-->
-<!--                title = #{title}-->
-<!--    </select>-->
+    <insert id="saveres" flushCache="true" parameterType="com.lec.spring.domain.BookReserv"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO bookReservation
+        (id, user_id, bookname, author, revdate, duedate, overdue)
+        VALUES
+        (#{id}, #{user_id}, #{bookname}, #{author}, #{revdate}, #{duedate}, #{overdue})
+    </insert>
+
+    <insert id="saveren" flushCache="true" parameterType="com.lec.spring.domain.BookRent"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO bookRent
+        (id, user_id, bookname, author, rentdate, returndate)
+        VALUES
+        (#{id}, #{user_id}, #{bookname}, #{author}, #{rentdate}, #{returndate})
+    </insert>
+
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.Book"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO book
+        (bookname, author)
+        VALUES
+        (#{bookname}, #{author})
+    </insert>
+
+    <insert id="rent" flushCache="true" parameterType="com.lec.spring.domain.BookRent"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO bookRent
+        (id, user_id, bookname, author, rentdate, returndate)
+        VALUES
+        (#{id}, #{user_id}, #{bookname}, #{author}, #{rentdate}, #{returndate})
+    </insert>
+
+    <insert id="reserv" flushCache="true" parameterType="com.lec.spring.domain.BookReserv"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO bookReservation
+        (id, user_id, bookname, author, revdate, duedate, overdue)
+        VALUES
+        (#{id}, #{user_id}, #{bookname}, #{author}, #{revdate}, #{duedate}, #{overdue})
+    </insert>
+
+    <!-- 반복해서 사용될 쿼리문은 sql 태그로 정의 include 태그로 가져다 쓸수 있다 -->
+    <sql id="SELECT_BASE">
+        SELECT
+        id, <!--setId()-->
+        user_id, <!--setUser_id-->
+        bookname, <!--setBookname-->
+        author, <!--setAuthor-->
+        rentdate, <!--setRentdate-->
+        returndate <!--setReturndate-->
+        FROM
+        bookRent
+    </sql>
+
+    <select id="findById" resultType="com.lec.spring.domain.Book">
+        <include refid="SELECT_BASE"/>
+        WHERE
+        rent_id = #{rent_id}
+    </select>
+
+    <select id="findByUserIdRent" resultType="com.lec.spring.domain.BookRent">
+        <include refid="SELECT_BASE"/>
+        WHERE
+        user_id = #{user_id}
+    </select>
+
+    <select id="findByUserIdReserv" resultType="com.lec.spring.domain.BookReserv">
+        <include refid="SELECT_BASE"/>
+        WHERE
+        user_id = #{user_id}
+    </select>
+
+    <select id="findAll" resultType="com.lec.spring.domain.Book">
+        <include refid="SELECT_BASE"/>
+        ORDER BY id DESC
+    </select>
+
+    <select id="findAllRent" resultType="com.lec.spring.domain.BookRent">
+        <include refid="SELECT_BASE"/>
+        ORDER BY id DESC
+    </select>
+
+    <select id="findAllReserv" resultType="com.lec.spring.domain.BookReserv">
+        <include refid="SELECT_BASE"/>
+        ORDER BY id DESC
+    </select>
+
 
 </mapper>

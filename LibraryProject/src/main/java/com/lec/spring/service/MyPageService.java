@@ -49,4 +49,18 @@ public class MyPageService {
 
         return list;
     }
+
+    public int bookres(Book book){
+        return bookRepository.saveres(book);
+    }
+
+    public int bookren(Book book){
+        return bookRepository.saveren(book);
+    }
+
+    public int book(Book book){
+        return bookRepository.save(book);
+    }
+
+
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +14,15 @@
 <div id="wrap">
   <header>
     <div id="login">
-      <a href="#">로그인</a>
-      <a href="#">회원가입</a>
+      <!-- 로그인하지 않았을때(anonymous 상태) 보이는 메뉴 -->
+      <li class="nav-item" sec:authorize="isAnonymous()">
+        <a class="nav-link" th:href="@{../user/login}">로그인</a>
+        <a class="nav-link" th:href="@{../user/register}">회원가입</a>
+      </li>
+      <!-- 로그인한 사람에게만 보이는 메뉴 -->
+      <form class="logout" th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
+        <span><button class="logoutBtn" type="submit">로그아웃</button></span>
+      </form>
     </div>
     <div id="logo">
       <a href="#">
