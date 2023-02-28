@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lec.spring.repository.RequestBookRepository">
+
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.RequestBook"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO bookrequest
+            (req_bookname, req_author, req_publisher,req_bookrelease ,user_id)
+        VALUES
+            (#{req_bookname}, #{req_author},#{req_publisher},#{req_bookrelease}, #{user.id})
+    </insert>
+
+    <!-- 반복해서 사용될 쿼리문은 sql 태그로 정의 include 태그로 가져다 쓸수 있다 -->
+    <sql id="SELECT_BASE">
+        SELECT
+            r.id "r_id",
+            r.req_bookname "req_bookname",
+            r.req_author "req_author",
+            r.req_publisher "req_publisher",
+            r.req_bookrelease "req_bookrelease",
+            r.req_regDate "req_regDate",
+            u.id "u_id",
+            u.username "u_username",
+            u.name "u_name"
+        FROM
+            bookrequest r, user u
+        WHERE
+            r.user_id = u.id
+    </sql>
+    <!-- JOIN 문으로 여러 테이블의 데이터 매핑 받기 -->
+    <resultMap id="myUser" type="com.lec.spring.domain.User">
+        <result column="u_id" property="id"/>
+        <result column="u_username" property="username"/>
+        <result column="u_name" property="name"/>
+    </resultMap>
+
+    <resultMap id="mapRequestBook" type="com.lec.spring.domain.RequestBook">
+        <result column="r_id" property="id"/>
+        <result column="req_bookname" property="req_bookname"/>
+        <result column="req_author" property="req_author"/>
+        <result column="req_publisher" property="req_publisher"/>
+        <result column="req_bookrelease" property="req_bookrelease"/>
+        <result column="req_regDate" property="req_regDate"/>
+
+        <collection property="user" resultMap="myUser"/>
+    </resultMap>
+
+    <select id="findById" resultMap="mapRequestBook">
+        <include refid="SELECT_BASE"/>
+        AND r.id = #{id}
+        ORDER BY r.id DESC
+    </select>
+
+    <select id="findAll" resultMap="mapRequestBook">
+        <include refid="SELECT_BASE"/>
+        ORDER BY r.id DESC
+    </select>
+
+    <update id="update" flushCache="true"
+            parameterType="com.lec.spring.domain.RequestBook">
+        UPDATE bookrequest
+        SET req_bookname = #{req_bookname}, req_author = #{req_author},req_publisher = #{req_publisher}, req_bookrelease = #{req_bookrelease}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" flushCache="true"
+            parameterType="com.lec.spring.domain.RequestBook">
+        DELETE FROM bookrequest WHERE id = #{id}
+    </delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -29,14 +29,14 @@
   <div class="mb-3 mt-3 clearfix">
     <span class="float-start me-2">id: [[${dto.id }]]</span>
     <span class="float-end ms-4">작성일: [[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</span>
-    <span class="float-end">조회수: [[${dto.viewCnt }]]</span>
+
   </div>
 
   <form name="frm" th:action="@{/board/update}" method="post">
     <input type="hidden" name="id" th:value="${dto.id}"/>
     <div class="mb-3">
       <label>작성자:</label>
-      <span class="form-control" readonly>[[${dto.user}]]</span>
+      <span class="form-control" readonly>[[${dto.user.name}]]</span>
     </div>
     <div class="mb-3 mt-3">
       <label for="subject">제목:</label>
@@ -50,7 +50,7 @@
     <!-- 하단 링크 -->
     <button type="submit" class="btn btn-outline-dark">수정완료</button>
     <button type="button" class="btn btn-outline-dark" onclick="history.back()">이전으로</button>
-    <a class="btn btn-outline-dark" th:href="@{/coupon/list}">목록</a>
+    <a class="btn btn-outline-dark" th:href="@{/board/list}">목록</a>
     <!-- 하단 링크 -->
 
   </form>

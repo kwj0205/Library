@@ -33,6 +33,40 @@ INSERT INTO QnA (user_id, subject, content) VALUES
 ;
 
 
+INSERT INTO bookrequest (user_id, req_bookname, req_author,req_publisher,req_bookrelease) VALUES
+(1, '제목입니다1', '저자입니다1','출판사입니다1','2000-05-03'),
+(2, '제목입니다2', '저자입니다2','출판사입니다2','2001-03-04'),
+(3, '제목입니다3', '저자입니다3','출판사입니다3','1998-06-23')
+;
+
+INSERT INTO file(request_id, source, file) VALUES
+(1, 'face01.png', 'face01.png'),
+(1, 'face02.png', 'face02.png'),
+(2, 'face03.png', 'face03.png'),
+(2, 'face04.png', 'face04.png'),
+(3, 'face05.png', 'face05.png'),
+(3, 'face06.png', 'face06.png')
+
+;
+
+INSERT INTO request_comment(user_id, request_id, content) VALUES
+(1, 1, '1. user1이 1번글에 댓글 작성.'),
+(1, 1, '2. user1이 1번글에 댓글 작성.'),
+(1, 2, '3. user1이 2번글에 댓글 작성.'),
+(1, 2, '4. user1이 2번글에 댓글 작성.'),
+(1, 3, '5. user1이 3번글에 댓글 작성.'),
+(1, 3, '6. user1이 3번글에 댓글 작성.'),
+(1, 4, '7. user1이 4번글에 댓글 작성.'),
+(1, 4, '8. user1이 4번글에 댓글 작성.'),
+(3, 1, '9. admin1이 1번글에 댓글 작성.'),
+(3, 1, '10. admin1이 1번글에 댓글 작성.'),
+(3, 2, '11. admin1이 2번글에 댓글 작성.'),
+(3, 2, '12. admin1이 2번글에 댓글 작성.'),
+(3, 3, '13. admin1이 3번글에 댓글 작성.'),
+(3, 3, '14. admin1이 3번글에 댓글 작성.'),
+(3, 4, '15. admin1이 4번글에 댓글 작성.'),
+(3, 4, '16. admin1이 4번글에 댓글 작성.')
+;
 
 
 

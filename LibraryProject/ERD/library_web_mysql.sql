@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS bookReservation;
 DROP TABLE IF EXISTS QnA;
 DROP TABLE IF EXISTS seatReservation;
 DROP TABLE IF EXISTS user;
-
+DROP TABLE IF EXISTS request_comment;
 
 
 
@@ -68,10 +68,12 @@ CREATE TABLE bookReservation
 CREATE TABLE file
 (
 	id int NOT NULL AUTO_INCREMENT,
+	request_id int NOT NULL,
 	source varchar(100) NOT NULL,
 	file varchar(100) NOT NULL,
 	PRIMARY KEY (id)
 );
+
 
 
 CREATE TABLE QnA
@@ -119,7 +121,15 @@ CREATE TABLE user
 	UNIQUE (email)
 );
 
-
+CREATE TABLE request_comment
+(
+	id int NOT NULL AUTO_INCREMENT,
+	user_id int NOT NULL,
+	request_id int NOT NULL,
+	content text NOT NULL,
+	regdate datetime DEFAULT now(),
+	PRIMARY KEY (id)
+);
 
 /* Create Foreign Keys */
 
@@ -140,10 +150,10 @@ ALTER TABLE book
 
 
 ALTER TABLE file
-	ADD FOREIGN KEY (id)
+	ADD FOREIGN KEY (request_id)
 	REFERENCES bookRequest (id)
 	ON UPDATE RESTRICT
-	ON DELETE CASCADE
+	ON DELETE RESTRICT
 ;
 
 
@@ -186,6 +196,12 @@ ALTER TABLE QnA
 	ON DELETE RESTRICT
 ;
 
+ALTER TABLE request_comment
+	ADD FOREIGN KEY (user_id)
+	REFERENCES user (id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
 
 ALTER TABLE seatReservation
 	ADD FOREIGN KEY (user_id)
