@@ -13,8 +13,6 @@ DROP TABLE IF EXISTS seatReservation;
 DROP TABLE IF EXISTS user;
 
 
-
-
 /* Create Tables */
 
 CREATE TABLE book
@@ -26,6 +24,7 @@ CREATE TABLE book
 	author varchar(80) NOT NULL,
 	publisher varchar(80) NOT NULL,
 	bookrelease datetime NOT NULL,
+	status enum('대출없음', '예약완료', '대출대기', '대출완료', '연체') NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -34,6 +33,8 @@ CREATE TABLE bookRent
 (
 	id int NOT NULL AUTO_INCREMENT,
 	user_id int NOT NULL,
+	bookname varchar(100) NOT NULL,
+	author varchar(80) NOT NULL,
 	rentdate datetime NOT NULL DEFAULT now(),
 	returndate datetime NOT NULL,
 	PRIMARY KEY (id)
@@ -57,10 +58,11 @@ CREATE TABLE bookReservation
 (
 	id int NOT NULL AUTO_INCREMENT,
 	user_id int NOT NULL,
+	bookname varchar(100) NOT NULL,
+	author varchar(80) NOT NULL,
 	revdate datetime NOT NULL,
 	duedate datetime NOT NULL,
 	overdue int(50) NOT NULL,
-	status enum("대출없음", "예약완료", "대출대기", "대출완료", "연체") NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -193,6 +195,4 @@ ALTER TABLE seatReservation
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
-
-
 
