@@ -10,3 +10,7 @@ SELECT * FROM QnA ORDER BY id DESC;
 SELECT * FROM bookRent ORDER BY id DESC;
 SELECT * FROM bookReservation ORDER BY id DESC;
 
+SELECT * FROM bookrequest  ORDER BY id DESC;
+SELECT * FROM file  ORDER BY id DESC;
+
+SELECT * FROM request_comment  ORDER BY id DESC;

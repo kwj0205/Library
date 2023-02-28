@@ -46,7 +46,7 @@
     <select id="findById" resultMap="mapQna">
         <include refid="SELECT_BASE"/>
             AND q.id = #{id}
-        ORDER BY q.id DESCQ
+        ORDER BY q.id DESC
     </select>
 
     <select id="findAll" resultMap="mapQna">

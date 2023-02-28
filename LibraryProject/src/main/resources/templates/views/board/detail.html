@@ -34,7 +34,7 @@
     <hr>
     <div class="mb-3 mt-3 clearfix">
         <span class="float-end ms-4">작성일: [[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</span>
-        <span class="float-end">조회수: [[${dto.viewCnt}]]</span>
+
     </div>
 
     <section>
@@ -55,6 +55,7 @@
             <label>내용:</label>
             <div class="border bg-light rounded p-2" >[[${dto.content }]]</div>
         </div>
+
 
         <!-- 하단 링크 -->
         <a class="btn btn-outline-dark" th:href="@{/board/update(id=${dto.id})}" th:if="${logged_user.id == dto.user.id}">수정</a>

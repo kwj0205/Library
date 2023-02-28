@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.spring.repository.FileRepository">
+    <insert id="insert" flushCache="true"
+            parameterType="arraylist"> <!-- mybatis 에서 list로 인식 -->
+        INSERT INTO file(source, file, request_id)
+        VALUES
+        <foreach collection="param1" item="e" separator="," > <!-- e는 map 타입 쿼리 사이에 , 필요-->
+            (#{e.source},#{e.file},#{param2})<!--  몇개가들어올지 몰라서 반복문으로 쿼리 작성 -->
+        </foreach>
+    </insert>
+    <insert id="save" flushCache="true"
+            parameterType="com.lec.spring.domain.FileDTO">
+        INSERT INTO file(source, file, request_id)
+        VALUES
+        (#{source}, #{file}, #{request_id})
+    </insert>
+    <!-- 반복해서 사용될 쿼리문은 sql 태그로 정의 include 태그로 가져다 쓸수 있다 -->
+    <sql id="SELECTFILE">
+        SELECT id, source, file, request_id
+        FROM file
+    </sql>
+
+    <select id="findByWrite" resultType="com.lec.spring.domain.FileDTO">
+        <include refid="SELECTFILE"></include>
+        WHERE
+        request_id = #{param1}
+        ORDER BY id ASC
+    </select>
+
+    <select id="findById" resultType="com.lec.spring.domain.FileDTO">
+        <include refid="SELECTFILE"/>
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByIds" resultType="com.lec.spring.domain.FileDTO"
+            parameterType="java.util.ArrayList">
+        <include refid="SELECTFILE"/>
+        WHERE
+        id IN
+        <foreach collection="array" item="e" separator="," open="(" close=")"> <!-- array 가 list 로 동작 e는 long 타입  처음 시작과 끝날때 붙는 문자열-->
+            #{e}
+        </foreach>
+        ORDER BY id ASC
+    </select>
+
+    <delete id="deleteByIds" flushCache="true"
+            parameterType="java.util.ArrayList">
+        DELETE FROM file
+        WHERE id IN (<foreach collection="array" item="item" separator=","> <!-- 확실하게 지워지는게 있을시만 사용-->
+        #{item}
+    </foreach>)
+    </delete>
+    <delete id="delete" flushCache="true">
+        <!--        DELETE FROM t5_file WHERE request_id = #{request_id}  특정 첨부파일의 모든 파일 삭제 fk이기 때문에 -->
+        DELETE FROM file WHERE id = #{id} <!-- 해당 첨부파일 하나 삭제 -->
+    </delete>
+</mapper>
