@@ -120,3 +120,23 @@ nav{
 }
 
 body {height: 2000px;}
+
+.search {
+  position: relative;
+  width: 200px;
+}
+
+.search {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  width: 400px;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}

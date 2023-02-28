@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:fragment="header">
   <meta charset="UTF-8">
-  <link rel="stylesheet" th:href="@{/css/intro.css}">
+  <link rel="stylesheet" th:href="@{/css/menu.css}">
   <div id="wrap">
       <div id="login" sec:authorize="isAnonymous()">
         <!-- 로그인하지 않았을때(anonymous 상태) 로그인 form -->
@@ -28,8 +28,8 @@
   </div>
   <nav id="menubar">
     <ul>
-      <li><a href="#" id="click">도서관 소개</a></li>
-      <li><a href="book.html" class="line">도서</a></li>
+      <li><a th:href="@{/library/intro}" class="line">도서관 소개</a></li>
+      <li><a th:href="@{/library/book}" class="line">도서</a></li>
       <li><a href="#" class="line">QnA</a></li>
       <li sec:authorize="isAuthenticated()"><a href="#" class="line">마이페이지</a></li>
     </ul>
