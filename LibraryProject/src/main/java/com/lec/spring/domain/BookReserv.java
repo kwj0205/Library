@@ -13,9 +13,11 @@ import java.time.LocalDateTime;
 @Builder
 public class BookReserv {
     private Long id;
-    private String user_id;
+    private Long user_id;
     private String bookname; // 책 이름
     private String author; // 책 저자
-    private LocalDateTime reservdate; // 대출 예상 일자
+    private LocalDateTime revdate; // 대출 예상 일자
+    private LocalDateTime duedate;
+    private int overdue;
     private String status; // 책 예약 상태
 }

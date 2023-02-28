@@ -29,33 +29,18 @@
         (#{bookname}, #{author})
     </insert>
 
-    <insert id="rent" flushCache="true" parameterType="com.lec.spring.domain.BookRent"
-            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        INSERT INTO bookRent
-        (id, user_id, bookname, author, rentdate, returndate)
-        VALUES
-        (#{id}, #{user_id}, #{bookname}, #{author}, #{rentdate}, #{returndate})
-    </insert>
-
-    <insert id="reserv" flushCache="true" parameterType="com.lec.spring.domain.BookReserv"
-            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-        INSERT INTO bookReservation
-        (id, user_id, bookname, author, revdate, duedate, overdue)
-        VALUES
-        (#{id}, #{user_id}, #{bookname}, #{author}, #{revdate}, #{duedate}, #{overdue})
-    </insert>
 
     <!-- 반복해서 사용될 쿼리문은 sql 태그로 정의 include 태그로 가져다 쓸수 있다 -->
     <sql id="SELECT_BASE">
         SELECT
-        id, <!--setId()-->
-        user_id, <!--setUser_id-->
-        bookname, <!--setBookname-->
-        author, <!--setAuthor-->
-        rentdate, <!--setRentdate-->
-        returndate <!--setReturndate-->
+            id, <!--setId()-->
+            user_id, <!--setUser_id-->
+            bookname, <!--setBookname-->
+            author, <!--setAuthor-->
+            rentdate, <!--setRentdate-->
+            returndate <!--setReturndate-->
         FROM
-        bookRent
+            bookRent
     </sql>
 
     <select id="findById" resultType="com.lec.spring.domain.Book">
