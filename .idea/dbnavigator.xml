@@ -27,8 +27,8 @@
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
     <mapping file-url="file://$PROJECT_DIR$/LibraryProject/ERD/library_web_mysql_test.sql" connection-id="3dec1a13-05f0-4a67-810b-aae193db3693" session-id="MAIN" current-schema="library2211" />
-    <mapping file-url="file://$PROJECT_DIR$/LibraryProject/ERD/library_web_mysql_data.sql" connection-id="4c0b379e-b099-451c-88a1-ea5142a1231b" session-id="MAIN" current-schema="library2211" />
-    <mapping file-url="file://$PROJECT_DIR$/LibraryProject/ERD/library_web_mysql.sql" connection-id="4c0b379e-b099-451c-88a1-ea5142a1231b" session-id="MAIN" current-schema="library2211" />
+    <mapping file-url="file://$PROJECT_DIR$/LibraryProject/ERD/library_web_mysql.sql" connection-id="4c0b379e-b099-451c-88a1-ea5142a1231b" session-id="MAIN" current-schema="library" />
+    <mapping file-url="file://$PROJECT_DIR$/LibraryProject/ERD/library_web_mysql_data.sql" connection-id="4c0b379e-b099-451c-88a1-ea5142a1231b" session-id="MAIN" current-schema="library" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -42,8 +42,10 @@
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
-  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
-    <recently-used-interfaces />
+  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="false">
+    <recently-used-interfaces>
+      <mapping database-type="MYSQL" interface-id="DEFAULT" />
+    </recently-used-interfaces>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
@@ -60,13 +62,13 @@
           <url-type value="DATABASE" />
           <host value="localhost" />
           <port value="3306" />
-          <database value="library2211" />
+          <database value="library" />
           <type value="USER_PASSWORD" />
-          <user value="library" />
+          <user value="library2211" />
           <deprecated-pwd value="MTIzNA==" />
         </database>
         <properties>
-          <auto-commit value="false" />
+          <auto-commit value="true" />
         </properties>
         <ssh-settings>
           <active value="false" />
