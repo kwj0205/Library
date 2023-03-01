@@ -21,38 +21,8 @@
     <title>마이페이지</title>
   </head>
   <body>
-    <div id="wrap">
-      <header>
-        <div id="login">
-          <!-- 로그인하지 않았을때(anonymous 상태) 보이는 메뉴 -->
-          <li class="nav-item" sec:authorize="isAnonymous()">
-            <a class="nav-link" th:href="@{../user/login}">로그인</a>
-            <a class="nav-link" th:href="@{../user/register}">회원가입</a>
-          </li>
-          <!-- 로그인한 사람에게만 보이는 메뉴 -->
-          <form class="logout" th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
-            <span><button class="logoutBtn" type="submit">로그아웃</button></span>
-          </form>
-        </div>
-        <div id="logo">
-          <a th:href="@{../home}">
-            <img src="/img/magic-book.png" id="logo_img">
-            <div id="logo_text">WSD 도서관</div>
-          </a>
-        </div>
-      </header>
-    </div>
-    <nav id="menubar">
-      <ul>
-        <li><a th:href="@{../library/intro}" class="line">도서관 소개</a></li>
-        <li><a th:href="@{../library/book}" class="line">도서</a></li>
-        <li><a th:href="@{../board/qna}" class="line">QnA</a></li>
-        <li><a th:href="@{mypage}" id="click">마이페이지</a></li>
-      </ul>
-    </nav>
 
-    <!-- /* 인증 헤더 */ -->
-    <th:block th:insert="~{common/header::header}"></th:block>
+<th:block th:insert="~{common/mheader::header}"></th:block>
 
     <div class="container mt-3 text-center" th:with="user=${#authentication.getPrincipal().getUser()}">
       <br />
