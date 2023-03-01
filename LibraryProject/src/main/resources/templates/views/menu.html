@@ -4,16 +4,27 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet"  th:href="@{/css/menu.css}">
+  <link rel="stylesheet"  th:href="@{/css/intro.css}">
   <title>도서관 소개</title>
 </head>
 <body>
 <th:block th:insert="~{common/mheader::header}"></th:block>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+
+<div id="book">
+  <div id="book_list">
+    <div id="library"><a>도서관 출입 예약</a></div>
+    <div id="reservation"><a>도서 대출 조회</a></div>
+    <div id="request"><a>희망 도서 신청</a></div>
+  </div>
+</div>
+<br><br><br><br>
 
 <div class="search">
   <input type="text" placeholder="검색어 입력">
 </div>
+
+
 
 </body>
 <script th:src="@{/js/menu.js}"></script>
