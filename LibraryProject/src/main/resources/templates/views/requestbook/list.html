@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
   <meta charset="utf-8">
@@ -13,13 +13,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script th:src="@{/js/list.js}"></script>
 
-  <title>목록</title>
+  <title>희망 도서 신청</title>
 </head>
 
 <body>
 
+<th:block th:insert="~{common/mheader::header}"></th:block>
+
 <div class="container mt-3">
-  <h2>목록</h2>
+  <h2>희망 도서 신청</h2>
   <hr>
 
   <!-- 목록 -->

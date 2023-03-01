@@ -15,16 +15,16 @@
 
   <script th:src="@{/js/qna.js}"></script>
 
-  <title>작성</title>
+  <title>Q&A작성</title>
 </head>
 
 <body>
 
-<!-- /* 인증 헤더 */ -->
-<th:block th:insert="~{common/header::header}"></th:block>
+<!-- /* 메뉴 헤더 */ -->
+<th:block th:insert="~{common/mheader::header}"></th:block>
 
 <div class="container mt-3" th:with="user=${#authentication.getPrincipal().getUser()}">
-  <h2>Q</h2>
+  <h2>Q&A</h2>
   <hr>
 
   <div class="row mt-5" th:if="${error}">
