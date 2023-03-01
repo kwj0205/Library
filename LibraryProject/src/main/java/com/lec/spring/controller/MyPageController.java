@@ -104,7 +104,7 @@ public class MyPageController {
             User user = userService.findByUsername(loginId);
 
             redirectAttrs.addFlashAttribute("id", user.getId());
-////            redirectAttrs.addFlashAttribute("user_id", book.getRent_id());
+//            redirectAttrs.addFlashAttribute("user_id", book.getRent_id());
 //            redirectAttrs.addFlashAttribute("bookname", book.getBookname());
 //            redirectAttrs.addFlashAttribute("author", book.getAuthor());
 //            redirectAttrs.addFlashAttribute("rentdate", datetime);

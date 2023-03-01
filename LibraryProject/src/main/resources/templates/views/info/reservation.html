@@ -59,24 +59,6 @@
       <h2><dt>예약 목록</dt></h2>
       <br />
 
-      <!-- 페이징 헤더 -->
-      <div class="mb-3 mt-3 clearfix">
-        <span class="float-start me-2">총 [[${cnt}]]개</span>
-        <span class="float-start">page [[${page}]]/[[${totalPage}]]</span>
-        <span class="float-end">
-          <form name="frmPageRows">
-            <input type="hidden" name="page" th:value="${page}" />
-            <select class="form-select" name="pageRows">
-              <option value="10" th:selected="${pageRows==10}">10</option>
-              <option value="15" th:selected="${pageRows==15}">15</option>
-              <option value="20" th:selected="${pageRows==20}">20</option>
-              <option value="50" th:selected="${pageRows==50}">50</option>
-            </select>
-          </form>
-        </span>
-      </div>
-      <!-- 페이징 헤더 -->
-
       <!-- 목록 -->
       <table class="table table-hover">
         <thead class="table-success">
@@ -84,7 +66,6 @@
             <th>청구기호</th>
             <th>책 제목</th>
             <th>저자</th>
-            <th>대출 예상 일자</th>
             <th>예약 현황</th>
           </tr>
         </thead>
@@ -93,7 +74,6 @@
             <td>[[${dto.id}]]</td>
             <td>[[${dto.bookname}]]</td>
             <td>[[${dto.author}]]</td>
-            <td>[[${dto.revdate}]]</td>
             <td><button class="btn btn-sm reservationBtn">취소하기</button></td>
           </tr>
         </tbody>
@@ -101,8 +81,5 @@
       <!-- 목록 -->
     </div>
 
-    <!-- pagination -->
-<!--    <th:block th:insert="~{board/pagination::pagination}"></th:block>-->
-    <!-- pagination -->
   </body>
 </html>

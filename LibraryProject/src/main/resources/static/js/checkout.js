@@ -3,15 +3,24 @@
         const isbn = urlParams.get('isbn');
 
         function formsubmit(){
-            window.alert("대출 완료");
+             $("[name='bookname']").val($("#title").text().trim());
+             $("[name='author']").val($("#authors").text().trim());
             var params = jQuery("#form1").serialize();
-            jQuery.ajax({
-                            method: "GET",
-                            url: "https://dapi.kakao.com/v3/search/book?target=isbn",
-                            data: { query: isbn },
-                            headers: { Authorization: "KakaoAK 2378c22a6b330a2deb9c49bbfb5a8da4" }
-                        })
-                       }
+            $.ajax({
+                method: "POST",
+                url : "/info/checkout",
+                data : params,
+            })
+            .done(function(){
+                alert("대출 완료");
+            });
+//            jQuery.ajax({
+//                            method: "GET",
+//                            url: "https://dapi.kakao.com/v3/search/book?target=isbn",
+//                            data: { query: isbn },
+//                            headers: { Authorization: "KakaoAK 2378c22a6b330a2deb9c49bbfb5a8da4" }
+//                        })
+       }
 
         $.ajax({
                 method: "GET",

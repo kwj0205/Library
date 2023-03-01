@@ -21,6 +21,7 @@ public class MyPageService {
 
     private final BookRepository bookRepository;
 
+
     @Autowired
     public MyPageService(SqlSession sqlSession){  // MyBatis 가 생성한 SqlSession 빈(bean) 객체 주입
         userRepository = sqlSession.getMapper(UserRepository.class);
@@ -30,7 +31,6 @@ public class MyPageService {
 
 
     public List<BookReserv> detailreserv(Long user_id){
-//      List<BookReserv> list = new ArrayList<>();
         List<BookReserv> list = bookRepository.findByUserIdReserv(user_id);
         // -> 책 예약 내역 한가지만 있는 것이 아니니까 List로 받아와야 함
 
@@ -39,7 +39,6 @@ public class MyPageService {
 
 
     public List<BookRent> detailrent(Long user_id){
-//      List<BookRent> list = new ArrayList<>();
         List<BookRent> list = bookRepository.findByUserIdRent(user_id);
         // -> 책 대출 내역 한가지만 있는 것이 아니니까 List로 받아와야 함
 
@@ -50,12 +49,12 @@ public class MyPageService {
         return list;
     }
 
-    public int bookres(Book book){
-        return bookRepository.saveres(book);
+    public int bookres(BookReserv bookReserv){
+        return bookRepository.saveres(bookReserv);
     }
 
-    public int bookren(Book book){
-        return bookRepository.saveren(book);
+    public int bookren(BookRent bookRent){
+        return bookRepository.saveren(bookRent);
     }
 
     public int book(Book book){
