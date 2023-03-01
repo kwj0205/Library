@@ -248,3 +248,21 @@ b{
     background-color: white;
     cursor: pointer;
 }
+
+.p1{
+    width: 50px;
+    height: 30px;
+    font-size: 20px;
+    background-color: rgb(51, 44, 57);
+    color: white;
+}
+
+#p2{
+    display: none;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.p1:last-child{
+    margin-left: 50px;
+}
