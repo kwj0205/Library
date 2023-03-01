@@ -68,18 +68,17 @@ article{
     /* line-height: 70px; */
 }
 
-#user form span a{
+#user form span a {
     color: white;
 }
 
-#user form span a{
+#user form span a {
     margin-left: 30px;
 }
 
 #user form span a:hover{
     border-bottom: 1px solid white;
 }
-
 
 nav{
     position: sticky;

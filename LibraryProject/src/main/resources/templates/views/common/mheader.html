@@ -17,6 +17,7 @@
           <span><a id="name">[[${user.username}]]([[${user.name}]]) 님 환영합니다</a></span>
           <span><a th:href="@{/user/userUpdate(id=${user.id})}">회원정보 수정</a></span>
           <span><a th:href="@{/user/pwUpdate(id=${user.id})}">비밀번호 수정</a></span>
+          <span><button type="submit">로그아웃</button></span>
         </form>
       </div>
       <div id="logo">
