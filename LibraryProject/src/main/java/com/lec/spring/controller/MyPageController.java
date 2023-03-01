@@ -113,7 +113,7 @@ public class MyPageController {
 //            model.addAttribute("result", mypageService.book(book));
 //            model.addAttribute("dto", book);   // auto-generated key
 
-        return "redirect:/info/checkout";
+        return "redirect:/info/rent";
         }
 
 

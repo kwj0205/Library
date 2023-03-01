@@ -3,9 +3,17 @@
         const isbn = urlParams.get('isbn');
 
         function formsubmit(){
+            window.alert("대출 완료");
             var params = jQuery("#form1").serialize();
+            jQuery.ajax({
+                            method: "GET",
+                            url: "https://dapi.kakao.com/v3/search/book?target=isbn",
+                            data: { query: isbn },
+                            headers: { Authorization: "KakaoAK 2378c22a6b330a2deb9c49bbfb5a8da4" }
+                        })
+                       }
 
-        jQuery.ajax({
+        $.ajax({
                 method: "GET",
                 url: "https://dapi.kakao.com/v3/search/book?target=isbn",
                 data: { query: isbn },
@@ -26,4 +34,3 @@
                 $("#translators").append(msg.documents[0].translators);
                 $("#url").append('<a href="' + msg.documents[0].url + '">도서정보 상세보기</a>');
             })
-            }
