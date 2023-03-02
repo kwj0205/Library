@@ -1,1 +1,1 @@
-{"resources":{"LibraryProject/ERD/library_web_mysql_data.sql":{"default-datasource":"mysql8-1864b0bd451-41557e8456ff0108","default-catalog":"library"}}}
+{"resources":{"LibraryProject/ERD/library_web_mysql_data.sql":{"default-datasource":"mysql8-1864b0bd451-41557e8456ff0108","default-catalog":"library"},"LibraryProject/ERD/library_web_mysql_test.sql":{"default-datasource":"mysql8-1864b0bd451-41557e8456ff0108","default-catalog":"library"}}}
