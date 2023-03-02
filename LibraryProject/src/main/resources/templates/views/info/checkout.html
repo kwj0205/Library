@@ -38,38 +38,33 @@
     <li><a th:href="@{/info/intro}" class="line">도서관 소개</a></li>
     <li><a th:href="@{/info/book}" id="click">도서</a></li>
     <li><a th:href="@{/board/list}" class="line">QnA</a></li>
-    <li sec:authorize="isAuthenticated()"><a th:href="@{info/mypage}" class="line">마이페이지</a></li>
+    <li sec:authorize="isAuthenticated()"><a th:href="@{/info/mypage}" class="line">마이페이지</a></li>
   </ul>
 </nav>
 <section>
   <form id="form1" method="post">
-    <input name="bookname" type="hidden" value="$(`#title`).text().trim()"/>
-    <input name="author" type="hidden" value="$(`#authors`).text().trim()"/>
-<!--    <input name="rentdate" type="hidden"/>-->
-<!--    <input name="returndate" type="hidden"/>-->
-<!--    <input name="status" type="hidden"/>-->
-  <div id="box">
-    <p id="title"><b>도서</b> </p>
-    <div id="thumbnail"></div>
-    <div id="document">
-      <div id="content"></div>
-      <div id="authors">저자 : </div>
-      <div id="publisher">출판사 : </div>
-      <div id="translators">번역자 : </div>
-      <div id="datetime">발행년도 : </div>
-      <div id="isbn">ISBN : </div>
+    <input name="bookname" type="hidden"/>
+    <input name="author" type="hidden"/>
+    <div id="box">
+      <b>도서</b><a id="title"></a>
+      <div id="thumbnail"></div>
+      <div id="document">
+        <div id="content"></div>
+        <div>저자 : <a id="authors"></a></div>
+        <div>출판사 : <a id="publisher"></a></div>
+        <div id="translators">번역자 : </div>
+        <div id="datetime">발행년도 : </div>
+        <div id="isbn">ISBN : </div>
+      </div>
     </div>
-  </div>
-  </div>
+    </div>
     <div id="detail">상세정보</div><div id="url"></div>
     <div id="information"></div>
     <div id="button">
-<!--      <button type="button" class="button" onclick="formsubmit()">대출하기</button>-->
-      <button type="submit" class="button" onclick="formsubmit()">대출하기</button>
+      <button type="button" class="button" onclick="formsubmit()">대출하기</button>
       <button type="button" class="button">예약하기</button>
     </div>
   </form>
-  </div>
 </section>
 <script th:src="@{/js/checkout.js}"></script>
 </body>
