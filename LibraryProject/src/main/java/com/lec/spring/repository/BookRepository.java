@@ -8,13 +8,17 @@ import java.util.List;
 
 public interface BookRepository {
     Book findById(Long rent_id);
+
     List<BookRent> findByUserIdRent(Long user_id);
     List<BookReserv> findByUserIdReserv(Long user_id);
+
     List<Book> findAll();
     List<BookRent> findAllRent();
     List<BookReserv> findAllReserv();
+
     int save(Book book);
 
     int saveren(BookRent bookRent);
+
     int saveres(BookReserv bookReserv);
 }
