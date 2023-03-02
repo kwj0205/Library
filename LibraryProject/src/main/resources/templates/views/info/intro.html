@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
 </head>
 <body>
 
-<th:block th:insert="~{common/mheader::header}"></th:block>
+<th:block th:insert="~{common/mheaderIntro::header}"></th:block>
 
 <article>
   <div id="i_title">도서관 안내</div>

@@ -30,7 +30,7 @@
     <ul>
       <li><a th:href="@{/info/intro}" class="line">도서관 소개</a></li>
       <li><a th:href="@{/info/book}" class="line">도서</a></li>
-      <li><a th:href="@{/board/list}" class="line">Q&A</a></li>
+      <li><a th:href="@{/board/list}" id="click">Q&A</a></li>
       <li sec:authorize="isAuthenticated()"><a th:href="@{/info/mypage}" class="line">마이페이지</a></li>
     </ul>
   </nav>

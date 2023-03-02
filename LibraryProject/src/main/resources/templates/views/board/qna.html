@@ -21,7 +21,7 @@
 <body>
 
 <!-- /* 메뉴 헤더 */ -->
-<th:block th:insert="~{common/mheader::header}"></th:block>
+<th:block th:insert="~{common/mheaderQna::header}"></th:block>
 
 <div class="container mt-3" th:with="user=${#authentication.getPrincipal().getUser()}">
   <h2>Q&A</h2>
