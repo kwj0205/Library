@@ -1,10 +1,13 @@
 package com.lec.spring.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,4 +22,27 @@ public class BookRent {
     private LocalDateTime returndate; // 반납일
     private LocalDateTime rentdate; // 대출일
     private String status; // 책 대출 상태
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
+    public void setBookname(String bookname) {
+        this.bookname = bookname;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setReturndate(LocalDateTime returndate) {
+        this.returndate = returndate;
+    }
+
+    public void setRentdate(LocalDateTime rentdate) {
+        this.rentdate = rentdate;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

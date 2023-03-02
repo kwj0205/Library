@@ -2,10 +2,12 @@ package com.lec.spring.controller;
 
 import ch.qos.logback.classic.Logger;
 import com.lec.spring.domain.Book;
+import com.lec.spring.domain.BookRent;
 import com.lec.spring.domain.User;
 import com.lec.spring.repository.UserRepository;
 import com.lec.spring.service.MyPageService;
 import com.lec.spring.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +37,7 @@ public class MyPageController {
     private UserService userService;
 
     private UserRepository userRepository;
+
 
     public MyPageController(){
         System.out.println("MyPageController() 생성");
@@ -92,29 +97,56 @@ public class MyPageController {
     @GetMapping("/checkout")
     public void checkout(){}
 
-    @PostMapping("/checkout")
-    public String checkout(@Valid Book book
-            , BindingResult result    // <- Validator 가 유효성 검사를 한 결과가 담긴 객체
-            , Model model      // 매개변수 선언시 BindingReult 보다 Model 을 뒤에 두어야 한다.
-            ,Principal principal
-            , RedirectAttributes redirectAttrs        // redirect: 시 넘겨줄 값들
-    ){
+//    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+//    @ResponseBody
+//    public void rentData(BookRent bookrent) {
+//        mypageService.bookren(bookrent);
+//    }
 
-            String loginId = principal.getName();
-            User user = userService.findByUsername(loginId);
+    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+    public String addRent(Principal principal,
+                          @RequestParam(value = "bookname")String title,
+                          @RequestParam(value = "author")String author) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime twoWeeksAfter = now.plusDays(14);
+        String loginId = principal.getName();
+        User user = userService.findByUsername(loginId);
 
-            redirectAttrs.addFlashAttribute("id", user.getId());
-//            redirectAttrs.addFlashAttribute("user_id", book.getRent_id());
-//            redirectAttrs.addFlashAttribute("bookname", book.getBookname());
-//            redirectAttrs.addFlashAttribute("author", book.getAuthor());
-//            redirectAttrs.addFlashAttribute("rentdate", datetime);
-//            redirectAttrs.addFlashAttribute("returndate", datetime.plusDays(14));
-//
-//            model.addAttribute("result", mypageService.book(book));
-//            model.addAttribute("dto", book);   // auto-generated key
+        BookRent bookrent = new BookRent();
+        bookrent.setUser_id(user.getId());
+        bookrent.setBookname(title);
+        bookrent.setAuthor(author);
+        bookrent.setRentdate(now);
+        bookrent.setReturndate(twoWeeksAfter);
+
+        mypageService.bookren(bookrent);
 
         return "redirect:/info/rent";
-        }
+    }
+
+//    @PostMapping("/checkout")
+//    public String checkout(@Valid Book book
+//            , BindingResult result    // <- Validator 가 유효성 검사를 한 결과가 담긴 객체
+//            , Model model      // 매개변수 선언시 BindingReult 보다 Model 을 뒤에 두어야 한다.
+//            , Principal principal
+//            , RedirectAttributes redirectAttrs        // redirect: 시 넘겨줄 값들
+//    ){
+//
+//            String loginId = principal.getName();
+//            User user = userService.findByUsername(loginId);
+//
+//            redirectAttrs.addFlashAttribute("id", user.getId());
+////            redirectAttrs.addFlashAttribute("user_id", book.getRent_id());
+////            redirectAttrs.addFlashAttribute("bookname", book.getBookname());
+////            redirectAttrs.addFlashAttribute("author", book.getAuthor());
+////            redirectAttrs.addFlashAttribute("rentdate", datetime);
+////            redirectAttrs.addFlashAttribute("returndate", datetime.plusDays(14));
+////
+////            model.addAttribute("result", mypageService.book(book));
+////            model.addAttribute("dto", book);   // auto-generated key
+//
+//        return "redirect:/info/rent";
+//        }
 
 
 }
