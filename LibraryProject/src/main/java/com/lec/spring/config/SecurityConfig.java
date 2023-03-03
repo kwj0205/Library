@@ -35,7 +35,8 @@ public class SecurityConfig {
                         .requestMatchers("/board/detail/**",
                                                 "/board/qna/**",
                                                 "/board/update/**",
-                                                "board/delete/**").authenticated()
+                                                "board/delete/**",
+                                                "/requestbook/rebook").authenticated()
                         // ↓ 그 밖의 다른 요청은 전부 permit
                         .anyRequest().permitAll()
                 )
