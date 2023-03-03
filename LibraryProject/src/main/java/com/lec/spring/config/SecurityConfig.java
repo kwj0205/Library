@@ -36,7 +36,8 @@ public class SecurityConfig {
                                                 "/board/qna/**",
                                                 "/board/update/**",
                                                 "board/delete/**",
-                                                "/requestbook/rebook").authenticated()
+                                                "/requestbook/rebook",
+                                                "/requestbook/detail").authenticated()
                         // ↓ 그 밖의 다른 요청은 전부 permit
                         .anyRequest().permitAll()
                 )
