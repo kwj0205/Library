@@ -112,5 +112,10 @@
         DELETE FROM bookRent WHERE id = #{id}
     </delete>
 
+    <delete id="deleteReserv" flushCache="true"
+            parameterType="com.lec.spring.domain.BookReserv">
+        DELETE FROM bookReservation WHERE id = #{id}
+    </delete>
+
 
 </mapper>

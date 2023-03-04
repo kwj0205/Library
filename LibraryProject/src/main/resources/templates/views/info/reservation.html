@@ -29,6 +29,9 @@
       <h2><dt>예약 목록</dt></h2>
       <br />
 
+        <form name="frmDelete" th:action="@{/info/deleteReservOk}" method="post">
+            <input type="hidden" name="id">
+        </form>
       <!-- 목록 -->
       <table class="table table-hover">
         <thead class="table-success">
@@ -44,7 +47,7 @@
             <td>[[${dto.id}]]</td>
             <td>[[${dto.bookname}]]</td>
             <td>[[${dto.author}]]</td>
-            <td><button class="btn btn-sm reservationBtn">취소하기</button></td>
+            <td><button class="btn btn-sm reservationBtn" th:data-id="${dto.id}">취소하기</button></td>
           </tr>
         </tbody>
       </table>

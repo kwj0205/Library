@@ -81,25 +81,18 @@ public class MyPageController {
         return "info/rent";
     }
 
-    @PostMapping("/deleteRentOk")
-    public String deleteOk(Long id, Model model){
-        model.addAttribute("result", mypageService.deleteById(id));
-        return "info/deleteRentOk";
-    }
-
     @PostMapping("/rent")
     public String returnDate(Long id, Model model){
-
         return "info/deleteRentOk";
     }
 
-    @GetMapping("/seatReservation")
-    public String detail_seatReservation(Principal principal, Model model){
-        if(principal == null){
-            return "user/login";
-        }
-        return "info/seatReservation";
-    }
+//    @GetMapping("/seatReservation")
+//    public String detail_seatReservation(Principal principal, Model model){
+//        if(principal == null){
+//            return "user/login";
+//        }
+//        return "info/seatReservation";
+//    }
 
     @GetMapping("/book")
     public String book(Principal principal){
@@ -144,6 +137,12 @@ public class MyPageController {
         return "redirect:/info/rent";
     }
 
+    @PostMapping("/deleteRentOk")
+    public String deleteOk(Long id, Model model){
+        model.addAttribute("result", mypageService.deleteByIdRent(id));
+        return "info/deleteRentOk";
+    }
+
     @RequestMapping(value = "/checkout2Ok", method = RequestMethod.POST)
     public String addReserv(Principal principal,
                           Model model,
@@ -167,29 +166,11 @@ public class MyPageController {
         return "redirect:/info/reservation";
     }
 
-//    @PostMapping("/checkout")
-//    public String checkout(@Valid Book book
-//            , BindingResult result    // <- Validator 가 유효성 검사를 한 결과가 담긴 객체
-//            , Model model      // 매개변수 선언시 BindingReult 보다 Model 을 뒤에 두어야 한다.
-//            , Principal principal
-//            , RedirectAttributes redirectAttrs        // redirect: 시 넘겨줄 값들
-//    ){
-//
-//            String loginId = principal.getName();
-//            User user = userService.findByUsername(loginId);
-//
-//            redirectAttrs.addFlashAttribute("id", user.getId());
-////            redirectAttrs.addFlashAttribute("user_id", book.getRent_id());
-////            redirectAttrs.addFlashAttribute("bookname", book.getBookname());
-////            redirectAttrs.addFlashAttribute("author", book.getAuthor());
-////            redirectAttrs.addFlashAttribute("rentdate", datetime);
-////            redirectAttrs.addFlashAttribute("returndate", datetime.plusDays(14));
-////
-////            model.addAttribute("result", mypageService.book(book));
-////            model.addAttribute("dto", book);   // auto-generated key
-//
-//        return "redirect:/info/rent";
-//        }
+    @PostMapping("/deleteReservOk")
+    public String delete2Ok(Long id, Model model){
+        model.addAttribute("result", mypageService.deleteByIdReserv(id));
+        return "info/deleteReservOk";
+    }
 
 
 }

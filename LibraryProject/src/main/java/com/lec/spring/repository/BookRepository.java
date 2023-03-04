@@ -12,7 +12,7 @@ public interface BookRepository {
 
     List<BookRent> findByUserIdRent(Long user_id);
     List<BookRent> findByIdRent(Long id);
-    List<BookRent> findByIdReserv(Long user_id);
+    List<BookReserv> findByIdReserv(Long id);
     List<BookReserv> findByUserIdReserv(Long user_id);
 
     List<Book> findAll();
@@ -26,6 +26,8 @@ public interface BookRepository {
     int saveres(BookReserv bookReserv);
 
     int deleteRent(BookRent bookRent);
+
+    int deleteReserv(BookReserv bookReserv);
 
     int extendReturn(Long id);
 }
