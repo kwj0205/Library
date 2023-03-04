@@ -96,9 +96,6 @@ public class MyPageController {
 
     @GetMapping("/book")
     public String book(Principal principal){
-        if(principal == null){
-            return "user/login";
-        }
         return "info/book";
     }
 
@@ -106,29 +103,34 @@ public class MyPageController {
     public void intro(){}
 
     @GetMapping("/checkout")
-    public void checkout(){}
+    public void checkout(Principal principal){
+    }
 
+
+    @GetMapping("/checkoutOk")
+    public void checkoutOk(){
+    }
 
     @RequestMapping(value = "/checkoutOk", method = RequestMethod.POST)
     public String addRent(Principal principal,
                           @RequestParam(value = "bookname")String title,
                           @RequestParam(value = "author")String author) {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime twoWeeksAfter = now.plusDays(14);
-        String loginId = principal.getName();
-        User user = userService.findByUsername(loginId);
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime twoWeeksAfter = now.plusDays(14);
+            String loginId = principal.getName();
+            User user = userService.findByUsername(loginId);
 
-        BookRent bookrent = new BookRent();
-        bookrent.setUser_id(user.getId());
-        bookrent.setBookname(title);
-        bookrent.setAuthor(author);
-        bookrent.setRentdate(now);
-        bookrent.setReturndate(twoWeeksAfter);
-        bookrent.setStatus(0);
+            BookRent bookrent = new BookRent();
+            bookrent.setUser_id(user.getId());
+            bookrent.setBookname(title);
+            bookrent.setAuthor(author);
+            bookrent.setRentdate(now);
+            bookrent.setReturndate(twoWeeksAfter);
+            bookrent.setStatus(0);
 
-        mypageService.bookren(bookrent);
+            mypageService.bookren(bookrent);
 
-        return "redirect:/info/rent";
+            return "redirect:/info/rent";
     }
 
     @PostMapping("/extendOk")
@@ -148,22 +150,26 @@ public class MyPageController {
                           Model model,
                           @RequestParam(value = "bookname")String title,
                           @RequestParam(value = "author")String author) {
-        LocalDateTime now = LocalDateTime.now();
-        String loginId = principal.getName();
-        User user = userService.findByUsername(loginId);
+        if(principal == null){
+            return "user/login";
+        } else {
+            LocalDateTime now = LocalDateTime.now();
+            String loginId = principal.getName();
+            User user = userService.findByUsername(loginId);
 
-        BookReserv bookres = new BookReserv();
-        bookres.setUser_id(user.getId());
-        bookres.setBookname(title);
-        bookres.setAuthor(author);
-        bookres.setRevdate(now);
-        bookres.setDuedate(now);
-        bookres.setOverdue(0);
-        bookres.setStatus(0);
+            BookReserv bookres = new BookReserv();
+            bookres.setUser_id(user.getId());
+            bookres.setBookname(title);
+            bookres.setAuthor(author);
+            bookres.setRevdate(now);
+            bookres.setDuedate(now);
+            bookres.setOverdue(0);
+            bookres.setStatus(0);
 
-        mypageService.bookres(bookres);
+            mypageService.bookres(bookres);
 
-        return "redirect:/info/reservation";
+            return "redirect:/info/reservation";
+        }
     }
 
     @PostMapping("/deleteReservOk")

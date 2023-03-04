@@ -43,6 +43,7 @@
              })
              .done(function(){
                  alert("대출 완료");
+                 location.href = "rent";
              });
         }
 
@@ -61,5 +62,11 @@
              })
              .done(function(){
                  alert("예약 완료");
+                 location.href = "reservation";
              });
+        }
+
+        function formlogin(){
+            alert("로그인이 필요합니다.");
+            location.href = "../user/login";
         }
