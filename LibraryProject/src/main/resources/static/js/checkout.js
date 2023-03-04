@@ -38,7 +38,7 @@
 
              $.ajax({
                  method: "POST",
-                 url : "/info/checkout",
+                 url : "/info/checkoutOk",
                  data : params,
              })
              .done(function(){
@@ -46,24 +46,20 @@
              });
         }
 
-//        function formsubmit2(){
-//              let today = new Date();
-//
-//              $("[name='bookname']").val($("#title").text().trim());
-//              $("[name='author']").val($("#authors").text().trim());
-//              $("[name='rentdate']").val(today.toLocaleString());
-//              today.setDate(today.getDate() + 14);
-//              $("[name='returndate']").val(today.toLocaleString());
-////            $("[name='status']").val("대출완료")
-//
-//             var params = $("#form1").serialize();
-//
-//             $.ajax({
-//                 method: "POST",
-//                 url : "/info/checkout",
-//                 data : params,
-//             })
-//             .done(function(){
-//                 alert("대출 완료");
-//             });
-//        }
+        function formsubmit2(){
+              let today = new Date();
+
+              $("[name='bookname']").val($("#title").text().trim());
+              $("[name='author']").val($("#authors").text().trim());
+
+             var params = $("#form1").serialize();
+
+             $.ajax({
+                 method: "POST",
+                 url : "/info/checkout2Ok",
+                 data : params,
+             })
+             .done(function(){
+                 alert("예약 완료");
+             });
+        }

@@ -102,7 +102,12 @@ public class MyPageController {
     }
 
     @GetMapping("/book")
-    public void book(){}
+    public String book(Principal principal){
+        if(principal == null){
+            return "user/login";
+        }
+        return "info/book";
+    }
 
     @GetMapping("/intro")
     public void intro(){}
@@ -111,7 +116,7 @@ public class MyPageController {
     public void checkout(){}
 
 
-    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+    @RequestMapping(value = "/checkoutOk", method = RequestMethod.POST)
     public String addRent(Principal principal,
                           @RequestParam(value = "bookname")String title,
                           @RequestParam(value = "author")String author) {
@@ -139,29 +144,28 @@ public class MyPageController {
         return "redirect:/info/rent";
     }
 
-//    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
-//    public String addReserv(Principal principal,
-//                          Model model,
-//                          @RequestParam(value = "bookname")String title,
-//                          @RequestParam(value = "author")String author) {
-//        LocalDateTime now = LocalDateTime.now();
-//        LocalDateTime twoWeeksAfter = now.plusDays(14);
-//        String loginId = principal.getName();
-//        User user = userService.findByUsername(loginId);
-//
-//        BookReserv bookres = new BookReserv();
-//        bookres.setUser_id(user.getId());
-//        bookres.setBookname(title);
-//        bookres.setAuthor(author);
-//        bookres.setRevdate(now);
-//        bookres.setDuedate(now);
-//        bookres.setOverdue(0);
-//        bookres.setStatus(0);
-//
-//        mypageService.bookres(bookres);
-//
-//        return "redirect:/info/rent";
-//    }
+    @RequestMapping(value = "/checkout2Ok", method = RequestMethod.POST)
+    public String addReserv(Principal principal,
+                          Model model,
+                          @RequestParam(value = "bookname")String title,
+                          @RequestParam(value = "author")String author) {
+        LocalDateTime now = LocalDateTime.now();
+        String loginId = principal.getName();
+        User user = userService.findByUsername(loginId);
+
+        BookReserv bookres = new BookReserv();
+        bookres.setUser_id(user.getId());
+        bookres.setBookname(title);
+        bookres.setAuthor(author);
+        bookres.setRevdate(now);
+        bookres.setDuedate(now);
+        bookres.setOverdue(0);
+        bookres.setStatus(0);
+
+        mypageService.bookres(bookres);
+
+        return "redirect:/info/reservation";
+    }
 
 //    @PostMapping("/checkout")
 //    public String checkout(@Valid Book book
