@@ -16,12 +16,14 @@
   <header>
     <div id="login">
       <!-- 로그인하지 않았을때(anonymous 상태) 보이는 메뉴 -->
-      <li class="nav-item" sec:authorize="isAnonymous()">
-        <a class="nav-link" th:href="@{../user/login}">로그인</a>
-        <a class="nav-link" th:href="@{../user/register}">회원가입</a>
-      </li>
+      <div class="nav-item" sec:authorize="isAnonymous()">
+        <a th:href="@{../user/login}">로그인</a>
+        <a th:href="@{../user/register}">회원가입</a>
+      </div>
       <!-- 로그인한 사람에게만 보이는 메뉴 -->
       <form class="logout" th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
+        <span><a id="name">[[${user.username}]]([[${user.name}]]) 님 환영합니다</a></span>
+        <span><a th:href="@{/user/pwUpdate(id=${user.id})}">비밀번호 수정</a></span>
         <span><button class="logoutBtn" type="submit">로그아웃</button></span>
       </form>
     </div>

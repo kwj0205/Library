@@ -267,3 +267,17 @@ b{
 .p1:last-child{
     margin-left: 50px;
 }
+
+.logoutBtn {
+  border: none;
+  background-color: rgb(85, 113, 83);
+  margin: 0px 0px 0px 20px;
+  padding: 0px;
+  color: white;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+#login button:hover {
+  border-bottom: 1px solid white;
+}

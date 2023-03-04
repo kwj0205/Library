@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +13,21 @@
 <div id="wrap">
   <header>
     <div id="login">
-      <a href="#">로그인</a>
-      <a href="#">회원가입</a>
+      <!-- 로그인하지 않았을때(anonymous 상태) 보이는 메뉴 -->
+      <div class="nav-item" sec:authorize="isAnonymous()">
+        <a th:href="@{../user/login}">로그인</a>
+        <a th:href="@{../user/register}">회원가입</a>
+      </div>
+      <!-- 로그인한 사람에게만 보이는 메뉴 -->
+      <form class="logout" th:action="@{/user/logout}" method="POST" sec:authorize="isAuthenticated()" th:with="user=${#authentication.getPrincipal().getUser()}">
+        <span><a id="name">[[${user.username}]]([[${user.name}]]) 님 환영합니다</a></span>
+        <span><a th:href="@{/user/pwUpdate(id=${user.id})}">비밀번호 수정</a></span>
+        <span><button class="logoutBtn" type="submit">로그아웃</button></span>
+      </form>
     </div>
     <div id="logo">
-      <a href="#">
-        <img src="magic-book.png" id="logo_img">
+      <a th:href="@{/menu}">
+        <img src="/img/magic-book.png" id="logo_img">
         <div id="logo_text">WSD 도서관</div>
       </a>
     </div>
@@ -25,10 +35,10 @@
 </div>
 <nav id="menubar">
   <ul>
-    <li><a href="intro.html" class="line">도서관 소개</a></li>
-    <li><a href="book.html" id="click">도서</a></li>
-    <li><a href="#" class="line">QnA</a></li>
-    <li><a href="#" class="line">마이페이지</a></li>
+    <li><a th:href="@{/info/intro}" class="line">도서관 소개</a></li>
+    <li><a th:href="@{/info/book}" id="click">도서</a></li>
+    <li><a th:href="@{/board/list}" class="line">QnA</a></li>
+    <li sec:authorize="isAuthenticated()"><a th:href="@{/info/mypage}" class="line">마이페이지</a></li>
   </ul>
 </nav>
 <section>
