@@ -10,21 +10,34 @@
 <body>
 
 <th:block th:insert="~{common/mheader::header}"></th:block>
-<br><br><br><br><br><br><br>
+  <article>
+    <div id="content">
+      <br><br><br>
 
-<div id="book">
-  <div id="book_list">
-    <div id="library"><a th:href="@{/info/reservation}">도서 예약 조회</a></div>
-    <div id="reservation"><a th:href="@{/info/rent}">도서 대출 조회</a></div>
-    <div id="request"><a th:href="@{/requestbook/list}">희망 도서 신청 현황</a></div>
-  </div>
-</div>
-<br><br><br><br>
+      <div id="intro_img2"></div>
 
-<div class="search">
-  <input type="text" placeholder="검색어 입력">
-</div>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
+
+      <br>
+
+
+      <br>
+
+      <div id="book">
+        <div id="book_list">
+          <div id="library"><a th:href="@{/info/reservation}">도서 예약 조회</a></div>
+          <div id="reservation"><a th:href="@{/info/rent}">도서 대출 조회</a></div>
+          <div id="request"><a th:href="@{/requestbook/list}">희망 도서 신청 현황</a></div>
+        </div>
+      </div>
+      <br><br><br><br>
+
+      <div class="search">
+        <input type="text" placeholder="검색어 입력">
+      </div>
+    </div>
+  </article>
 </body>
 <script th:src="@{/js/menu.js}"></script>
 </html>
