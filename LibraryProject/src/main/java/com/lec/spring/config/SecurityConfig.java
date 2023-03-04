@@ -32,7 +32,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // URL 과 접근권한 세팅(들)
                         // ↓ "/board/detail/**", "/board/write/**", "/board/update/**", "board/delete/**" URL 로 들어오는 요청은 '인증'만 필요.
-                        .requestMatchers("/board/detail/**", "/board/qna/**", "/board/update/**", "board/delete/**").authenticated()
+                        .requestMatchers("/board/detail/**",
+                                                "/board/qna/**",
+                                                "/board/update/**",
+                                                "board/delete/**",
+                                                "/requestbook/rebook",
+                                                "/requestbook/detail").authenticated()
                         // ↓ 그 밖의 다른 요청은 전부 permit
                         .anyRequest().permitAll()
                 )
