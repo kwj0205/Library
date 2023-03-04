@@ -59,7 +59,7 @@ public class MyPageService {
         return bookRepository.save(book);
     }
 
-    public int deleteById(long id){
+    public int deleteByIdRent(long id){
         int result = 0;
 
         List<BookRent> list = bookRepository.findByIdRent(id);
@@ -72,6 +72,17 @@ public class MyPageService {
 
     public int extendReturn(Long id){
         int result = bookRepository.extendReturn(id);
+        return result;
+    }
+
+    public int deleteByIdReserv(long id){
+        int result = 0;
+
+        List<BookReserv> list = bookRepository.findByIdReserv(id);
+        if(list != null) {
+            result = bookRepository.deleteReserv(list.get(0));
+        }
+
         return result;
     }
 

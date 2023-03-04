@@ -27,23 +27,4 @@ public class BookRent {
         this.user_id = user_id;
     }
 
-//    public void setBookname(String bookname) {
-//        this.bookname = bookname;
-//    }
-//
-//    public void setAuthor(String author) {
-//        this.author = author;
-//    }
-//
-//    public void setReturndate(LocalDateTime returndate) {
-//        this.returndate = returndate;
-//    }
-//
-//    public void setRentdate(LocalDateTime rentdate) {
-//        this.rentdate = rentdate;
-//    }
-//
-//    public void setStatus(String status) {
-//        this.status = status;
-//    }
 }

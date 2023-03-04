@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<script th:if="${result != 1}">
+     alert("삭제 실패");
+     history.back();
+  </script>
+<script th:if="${result == 1}">
+     alert("예약이 취소되었습니다.");
+     location.href = "reservation";
+  </script>
+</html>
