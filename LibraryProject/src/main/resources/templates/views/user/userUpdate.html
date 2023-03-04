@@ -42,7 +42,7 @@
         <form name="frm" th:action="@{/user/userUpdate}" method="POST">
             <input type="hidden" name="id" th:value="${dto.id}"/>
             <input type="hidden" name="password" th:value="${dto.password}"/>
-            <input type="hidden" name="password" th:value="${dto.re_password}"/>
+            <input type="hidden" name="re_password" th:value="${dto.password}"/>
             <div class="form-group mt-3">
                 <label for="username">사용자 아이디</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="사용자아이디" th:value="${dto.username}" required>
