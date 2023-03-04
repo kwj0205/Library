@@ -83,7 +83,7 @@
     </select>
 
     <update id="extendReturn" flushCache="true">
-        UPDATE bookRent SET returnDate = DATE_ADD(returndate, INTERVAL 14 DAY) WHERE id = #{id}
+        UPDATE bookRent SET returnDate = DATE_ADD(returndate, INTERVAL 7 DAY) WHERE id = #{id}
     </update>
 
     <select id="findByUserIdReserv" resultType="com.lec.spring.domain.BookReserv">
