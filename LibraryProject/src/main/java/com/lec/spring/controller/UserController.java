@@ -65,6 +65,13 @@ public class UserController {
             result.rejectValue("username", "이미 존재하는 아이디입니다");
         }
 
+        // 이미 등록된 중복된 전화번호나 이메일이 들어오면
+        if(!result.hasFieldErrors("phonenumber") && userService.isExist(user.getPhonenumber())){
+            result.rejectValue("phonenumber", "이미 존재하는 전화번호입니다");
+        } else if (!result.hasFieldErrors("email") && userService.isExist(user.getEmail())) {
+            result.rejectValue("email", "이미 존재하는 이메일입니다");
+        }
+
         // 검증 에러가 있었다면 redirect 한다
         if(result.hasErrors()){
             redirectAttrs.addFlashAttribute("username", user.getUsername());
