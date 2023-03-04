@@ -37,6 +37,7 @@ CREATE TABLE bookRent
 	author varchar(80) NOT NULL,
 	rentdate datetime NOT NULL DEFAULT now(),
 	returndate datetime NOT NULL,
+	status int NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -63,6 +64,7 @@ CREATE TABLE bookReservation
 	revdate datetime NOT NULL,
 	duedate datetime NOT NULL,
 	overdue int(50) NOT NULL,
+	status int NOT NULL,
 	PRIMARY KEY (id)
 );
 

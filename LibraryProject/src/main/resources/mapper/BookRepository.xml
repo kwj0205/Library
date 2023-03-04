@@ -8,17 +8,17 @@
     <insert id="saveres" flushCache="true" parameterType="com.lec.spring.domain.BookReserv"
             useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO bookReservation
-        (id, user_id, bookname, author, revdate, duedate, overdue)
+        (id, user_id, bookname, author, revdate, duedate, overdue, status)
         VALUES
-        (#{id}, #{user_id}, #{bookname}, #{author}, #{revdate}, #{duedate}, #{overdue})
+        (#{id}, #{user_id}, #{bookname}, #{author}, #{revdate}, #{duedate}, #{overdue}, #{status})
     </insert>
 
     <insert id="saveren" flushCache="true" parameterType="com.lec.spring.domain.BookRent"
             useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO bookRent
-        (id, user_id, bookname, author, rentdate, returndate)
+        (id, user_id, bookname, author, rentdate, returndate, status)
         VALUES
-        (#{id}, #{user_id}, #{bookname}, #{author}, #{rentdate}, #{returndate})
+        (#{id}, #{user_id}, #{bookname}, #{author}, #{rentdate}, #{returndate}, #{status})
     </insert>
 
     <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.Book"
@@ -38,9 +38,24 @@
             bookname, <!--setBookname-->
             author, <!--setAuthor-->
             rentdate, <!--setRentdate-->
-            returndate <!--setReturndate-->
+            returndate, <!--setReturndate-->
+            status <!--setStatus-->
         FROM
             bookRent
+    </sql>
+
+    <sql id="SELECT_BASE_RES">
+        SELECT
+            id, <!--setId()-->
+            user_id, <!--setUser_id-->
+            bookname, <!--setBookname-->
+            author, <!--setAuthor-->
+            revdate, <!--setRevdate-->
+            duedate, <!--setDuedate-->
+            overdue, <!--setOverdue-->
+            status <!--setStatus-->
+        FROM
+            bookReservation
     </sql>
 
     <select id="findById" resultType="com.lec.spring.domain.Book">
@@ -49,14 +64,30 @@
         rent_id = #{rent_id}
     </select>
 
+    <select id="findByIdRent" resultType="com.lec.spring.domain.BookRent">
+        <include refid="SELECT_BASE"/>
+        WHERE
+        id = #{id}
+    </select>
+
+    <select id="findByIdReserv" resultType="com.lec.spring.domain.BookReserv">
+        <include refid="SELECT_BASE_RES"/>
+        WHERE
+        id = #{id}
+    </select>
+
     <select id="findByUserIdRent" resultType="com.lec.spring.domain.BookRent">
         <include refid="SELECT_BASE"/>
         WHERE
         user_id = #{user_id}
     </select>
 
+    <update id="extendReturn" flushCache="true">
+        UPDATE bookRent SET returnDate = DATE_ADD(returndate, INTERVAL 14 DAY) WHERE id = #{id}
+    </update>
+
     <select id="findByUserIdReserv" resultType="com.lec.spring.domain.BookReserv">
-        <include refid="SELECT_BASE"/>
+        <include refid="SELECT_BASE_RES"/>
         WHERE
         user_id = #{user_id}
     </select>
@@ -75,6 +106,11 @@
         <include refid="SELECT_BASE"/>
         ORDER BY id DESC
     </select>
+
+    <delete id="deleteRent" flushCache="true"
+            parameterType="com.lec.spring.domain.BookRent">
+        DELETE FROM bookRent WHERE id = #{id}
+    </delete>
 
 
 </mapper>

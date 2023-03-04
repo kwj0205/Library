@@ -3,6 +3,7 @@ package com.lec.spring.controller;
 import ch.qos.logback.classic.Logger;
 import com.lec.spring.domain.Book;
 import com.lec.spring.domain.BookRent;
+import com.lec.spring.domain.BookReserv;
 import com.lec.spring.domain.User;
 import com.lec.spring.repository.UserRepository;
 import com.lec.spring.service.MyPageService;
@@ -62,7 +63,8 @@ public class MyPageController {
         String loginId = principal.getName();
         User user = userService.findByUsername(loginId);
         System.out.println(user.getId());
-        model.addAttribute("list", mypageService.detailreserv(user.getId()));
+        List<BookReserv> detailreserv = mypageService.detailreserv(user.getId());
+        model.addAttribute("list", detailreserv);
         return "info/reservation";
     }
 
@@ -79,6 +81,17 @@ public class MyPageController {
         return "info/rent";
     }
 
+    @PostMapping("/deleteRentOk")
+    public String deleteOk(Long id, Model model){
+        model.addAttribute("result", mypageService.deleteById(id));
+        return "info/deleteRentOk";
+    }
+
+    @PostMapping("/rent")
+    public String returnDate(Long id, Model model){
+
+        return "info/deleteRentOk";
+    }
 
     @GetMapping("/seatReservation")
     public String detail_seatReservation(Principal principal, Model model){
@@ -97,11 +110,6 @@ public class MyPageController {
     @GetMapping("/checkout")
     public void checkout(){}
 
-//    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
-//    @ResponseBody
-//    public void rentData(BookRent bookrent) {
-//        mypageService.bookren(bookrent);
-//    }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
     public String addRent(Principal principal,
@@ -118,11 +126,42 @@ public class MyPageController {
         bookrent.setAuthor(author);
         bookrent.setRentdate(now);
         bookrent.setReturndate(twoWeeksAfter);
+        bookrent.setStatus(0);
 
         mypageService.bookren(bookrent);
 
         return "redirect:/info/rent";
     }
+
+    @PostMapping("/extendOk")
+    public String extend(Long id, Model model){
+        mypageService.extendReturn(id);
+        return "redirect:/info/rent";
+    }
+
+//    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+//    public String addReserv(Principal principal,
+//                          Model model,
+//                          @RequestParam(value = "bookname")String title,
+//                          @RequestParam(value = "author")String author) {
+//        LocalDateTime now = LocalDateTime.now();
+//        LocalDateTime twoWeeksAfter = now.plusDays(14);
+//        String loginId = principal.getName();
+//        User user = userService.findByUsername(loginId);
+//
+//        BookReserv bookres = new BookReserv();
+//        bookres.setUser_id(user.getId());
+//        bookres.setBookname(title);
+//        bookres.setAuthor(author);
+//        bookres.setRevdate(now);
+//        bookres.setDuedate(now);
+//        bookres.setOverdue(0);
+//        bookres.setStatus(0);
+//
+//        mypageService.bookres(bookres);
+//
+//        return "redirect:/info/rent";
+//    }
 
 //    @PostMapping("/checkout")
 //    public String checkout(@Valid Book book

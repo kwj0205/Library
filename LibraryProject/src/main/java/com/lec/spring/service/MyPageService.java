@@ -1,8 +1,6 @@
 package com.lec.spring.service;
 
-import com.lec.spring.domain.BookRent;
-import com.lec.spring.domain.Book;
-import com.lec.spring.domain.BookReserv;
+import com.lec.spring.domain.*;
 import com.lec.spring.repository.BookRepository;
 import com.lec.spring.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -61,5 +59,20 @@ public class MyPageService {
         return bookRepository.save(book);
     }
 
+    public int deleteById(long id){
+        int result = 0;
+
+        List<BookRent> list = bookRepository.findByIdRent(id);
+        if(list != null) {
+            result = bookRepository.deleteRent(list.get(0));
+        }
+
+        return result;
+    }
+
+    public int extendReturn(Long id){
+        int result = bookRepository.extendReturn(id);
+        return result;
+    }
 
 }

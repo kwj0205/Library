@@ -1,7 +1,7 @@
 SHOW TABLES;
 
 SELECT TABLE_NAME FROM information_schema.TABLES
-WHERE TABLE_SCHEMA = 'library'
+WHERE TABLE_SCHEMA = 'library';
 
 SELECT * FROM `user` ORDER BY username DESC;
 
@@ -14,3 +14,8 @@ SELECT * FROM bookrequest  ORDER BY id DESC;
 SELECT * FROM file  ORDER BY id DESC;
 
 SELECT * FROM request_comment  ORDER BY id DESC;
+
+
+UPDATE bookRent SET returnDate = DATE_ADD(returndate, INTERVAL 14 DAY) WHERE id = 6;
+
+
