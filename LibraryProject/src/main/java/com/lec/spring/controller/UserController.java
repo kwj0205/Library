@@ -66,9 +66,9 @@ public class UserController {
         }
 
         // 이미 등록된 중복된 전화번호나 이메일이 들어오면
-        if(!result.hasFieldErrors("phonenumber") && userService.isExist(user.getPhonenumber())){
+        if(!result.hasFieldErrors("phonenumber") && userService.isPhonenumber(user.getPhonenumber())){
             result.rejectValue("phonenumber", "이미 존재하는 전화번호입니다");
-        } else if (!result.hasFieldErrors("email") && userService.isExist(user.getEmail())) {
+        } else if (!result.hasFieldErrors("email") && userService.isEmail(user.getEmail())) {
             result.rejectValue("email", "이미 존재하는 이메일입니다");
         }
 

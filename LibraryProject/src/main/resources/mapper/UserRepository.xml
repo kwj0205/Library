@@ -27,6 +27,18 @@
         username = #{username}
     </select>
 
+    <select id="findByPhonenumber" resultType="com.lec.spring.domain.User">
+        <include refid="SELECT_BASE"/>
+        WHERE
+        phonenumber = #{phonenumber}
+    </select>
+
+    <select id="findByEmail" resultType="com.lec.spring.domain.User">
+        <include refid="SELECT_BASE"/>
+        WHERE
+        email = #{email}
+    </select>
+
     <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.User"
             keyProperty="id" useGeneratedKeys="true" keyColumn="id">
         INSERT INTO user(username, password, name, phonenumber, email)

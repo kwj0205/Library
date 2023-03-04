@@ -32,9 +32,29 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    // phonnumber(전화번호) 의 User 정보 읽어오기
+    public User findByPhonenumber(String phonnumber) {
+        return userRepository.findByPhonenumber(phonnumber);
+    }
+
+    // email(전화번호) 의 User 정보 읽어오기
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+
     // 특정 username(회원 아이디) 의 회원이 존재하는지 확인
     public boolean isExist(String username){
         User user = findByUsername(username);
+        return (user != null) ? true : false;
+    }
+
+    public boolean isPhonenumber(String phonenumber){
+        User user = findByPhonenumber(phonenumber);
+        return (user != null) ? true : false;
+    }
+
+    public boolean isEmail(String email){
+        User user = findByEmail(email);
         return (user != null) ? true : false;
     }
 
