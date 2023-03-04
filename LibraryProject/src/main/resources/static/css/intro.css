@@ -9,7 +9,7 @@ a {
   color: black;
 }
 
-article {
+#introLibrary {
   width: 1000px;
   margin: 0 auto;
 }
@@ -158,11 +158,11 @@ nav {
 }
 
 #intro_img2 {
-  position: absolute;
-  width: 100%;
-  height: 300px;
-  background-image: url('/img/menu.png');
+  position: inline;
+  background-image: url('../img/도서관2.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
+  padding: 26px, 26px, 26px, 26px;
 }
 
 .l_title {
@@ -279,7 +279,7 @@ input {
 }
 
 #book {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 #book_list {
@@ -288,19 +288,40 @@ input {
   align-items: center;
   max-width: 930px;
   min-height: 150px;
-  background: #ebebeb;
-  border: 1px solid #fff;
+  background: #ebebeb96;
+  border: 1px solid #ffffff00;
   border-radius: 10px;
   padding: 15px;
   margin: 0 auto;
 }
 
+#mainMsg {
+  color: white;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#mainMsg p:first-child {
+  font-size: 24px;
+  padding-bottom: 10px;
+  font-weight: 500;
+}
+
+#mainMsg p:last-child {
+  font-size: 50px;
+  font-weight: bold;
+}
+
 #book_list div {
   width: 30%;
+  font-size: 18px;
   text-align: center;
   background-color: #fff;
   border-radius: 8px;
   padding: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 

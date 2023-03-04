@@ -1,43 +1,41 @@
 <!DOCTYPE html>
-<html lang="ko"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet"  th:href="@{/css/intro.css}">
-  <title>메인 페이지</title>
-</head>
-<body>
-
-<th:block th:insert="~{common/mheader::header}"></th:block>
-  <article>
-    <div id="content">
-      <br><br><br>
-
-      <div id="intro_img2"></div>
-
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-      <br>
-
-
-      <br>
-
-      <div id="book">
-        <div id="book_list">
-          <div id="library"><a th:href="@{/info/reservation}">도서 예약 조회</a></div>
-          <div id="reservation"><a th:href="@{/info/rent}">도서 대출 조회</a></div>
-          <div id="request"><a th:href="@{/requestbook/list}">희망 도서 신청 현황</a></div>
+<html
+  lang="ko"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/intro.css}" />
+    <title>메인 페이지</title>
+    <style>
+      article {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <th:block th:insert="~{common/mheader::header}"></th:block>
+    <article>
+      <div id="intro_img2">
+        <div id="content">
+          <br /><br /><br /><br /><br /><br />
+          <div id="mainMsg">
+            <p>함께 꿈꾸는 문화공간!</p>
+            <p>WSD 도서관</p>
+          </div>
+          <br /><br />
+          <div id="book">
+            <div id="book_list">
+              <div id="library"><a th:href="@{/info/reservation}">도서 예약 조회</a></div>
+              <div id="reservation"><a th:href="@{/info/rent}">도서 대출 조회</a></div>
+              <div id="request"><a th:href="@{/requestbook/list}">희망 도서 신청 현황</a></div>
+            </div>
+          </div>
+          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         </div>
       </div>
-      <br><br><br><br>
-
-      <div class="search">
-        <input type="text" placeholder="검색어 입력">
-      </div>
-    </div>
-  </article>
-</body>
-<script th:src="@{/js/menu.js}"></script>
+    </article>
+  </body>
+  <script th:src="@{/js/menu.js}"></script>
 </html>
