@@ -69,6 +69,8 @@ public class UserController {
         if(result.hasErrors()){
             redirectAttrs.addFlashAttribute("username", user.getUsername());
             redirectAttrs.addFlashAttribute("name", user.getName());
+            redirectAttrs.addFlashAttribute("phonenumber", user.getPhonenumber());
+            redirectAttrs.addFlashAttribute("email", user.getEmail());
 
             List<FieldError> errList = result.getFieldErrors();
             for(FieldError err : errList){
@@ -94,7 +96,34 @@ public class UserController {
     }
 
     @PostMapping("/userUpdate")
-    public String userUpdateOk(User user, Model model){
+    public String userUpdateOk(@Valid User user
+            , BindingResult result  // UserValidator 가 유효성 검증한 결과가 담긴 객체
+            , Model model
+            , RedirectAttributes redirectAttrs
+    ){
+        // 이미 등록된 중복된 아이디(username) 이 들어오면
+//        if(!result.hasFieldErrors("username") && userService.isExist(user.getUsername())){
+//            result.rejectValue("username", "이미 존재하는 아이디입니다");
+//        }
+//
+//        // 검증 에러가 있었다면 redirect 한다
+//        if(result.hasErrors()){
+//            redirectAttrs.addFlashAttribute("username", user.getUsername());
+//            redirectAttrs.addFlashAttribute("name", user.getName());
+//            redirectAttrs.addFlashAttribute("phonenumber", user.getPhonenumber());
+//            redirectAttrs.addFlashAttribute("email", user.getEmail());
+//
+//            List<FieldError> errList = result.getFieldErrors();
+//            for(FieldError err : errList){
+//                redirectAttrs.addFlashAttribute("error", err.getCode());    // 가장 처음에 발견된 에러를 담아 보냄
+//                break;
+//            }
+//
+//            return "redirect:/user/userUpdate?id=" + user.getId();
+//        }
+
+
+
         model.addAttribute("result", userService.userUpdate(user));
         model.addAttribute("dto", user);
         return "user/userUpdateOk";
