@@ -69,6 +69,8 @@ public class UserController {
         if(result.hasErrors()){
             redirectAttrs.addFlashAttribute("username", user.getUsername());
             redirectAttrs.addFlashAttribute("name", user.getName());
+            redirectAttrs.addFlashAttribute("password", user.getPassword());
+            redirectAttrs.addFlashAttribute("re_password", user.getRe_password());
             redirectAttrs.addFlashAttribute("phonenumber", user.getPhonenumber());
             redirectAttrs.addFlashAttribute("email", user.getEmail());
 
