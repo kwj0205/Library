@@ -33,17 +33,17 @@ INSERT INTO QnA (user_id, subject, content) VALUES
 ;
 
 -- 샘플 책 대출(rent)
-INSERT INTO bookrent (id, user_id, bookname, author, rentdate, returndate) VALUES
-(1, 1, '책제목1', '책저자1', '2023/02/28 12:00:00', '2023/03/14 12:00:00'),
-(2, 1, '책제목2', '책저자2', '2023/02/28 12:00:00', '2023/03/14 12:00:00'),
-(3, 2, '책제목3', '책저자3', '2023/02/28 12:00:00', '2023/03/14 12:00:00')
+INSERT INTO bookrent (id, user_id, bookname, author, rentdate, returndate, status) VALUES
+(1, 1, '책제목1', '책저자1', '2023/02/28 12:00:00', '2023/03/14 12:00:00', 0),
+(2, 1, '책제목2', '책저자2', '2023/02/28 12:00:00', '2023/03/14 12:00:00', 0),
+(3, 2, '책제목3', '책저자3', '2023/02/28 12:00:00', '2023/03/14 12:00:00', 0)
 ;
 
 
 -- 샘플 책 예약(reservation)
-INSERT INTO bookReservation (id, user_id, bookname, author, revdate, duedate, overdue) VALUES
-(1, 2, '책제목1', '책저자1', '2023/03/14 12:00:00', '2023/03/28 12:00:00', 0),
-(2, 1, '책제목3', '책저자3', '2023/03/14 12:00:00', '2023/03/28 12:00:00', 0)
+INSERT INTO bookReservation (id, user_id, bookname, author, revdate, duedate, overdue, status) VALUES
+(1, 2, '책제목1', '책저자1', '2023/03/14 12:00:00', '2023/03/28 12:00:00', 0, 0),
+(2, 1, '책제목3', '책저자3', '2023/03/14 12:00:00', '2023/03/28 12:00:00', 0, 0)
 ;
 
 

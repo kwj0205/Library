@@ -19,5 +19,5 @@ public class BookReserv {
     private LocalDateTime revdate; // 대출 예상 일자
     private LocalDateTime duedate;
     private int overdue;
-    private String status; // 책 예약 상태
+    private int status; // 책 예약 상태 (0:예약ㅇ, 1:예약x)
 }

@@ -31,6 +31,14 @@
       <h2><dt>대출 목록</dt></h2>
       <br />
 
+      <section>
+        <form name="frmDelete" th:action="@{/info/deleteRentOk}" method="post">
+          <input type="hidden" name="id">
+        </form>
+
+        <form name="frmDate" th:action="@{/info/extendOk}" method="post">
+          <input type="hidden" name="id">
+        </form>
       <!-- 목록 -->
       <table class="table table-hover">
         <thead class="table-success">
@@ -51,12 +59,13 @@
             <td>[[${dto.author}]]</td>
             <td>[[${dto.rentdate}]]</td>
             <td>[[${dto.returndate}]]</td>
-            <td><button class="btn btn-sm rentBtn">연장하기</button></td>
-            <td><button class="btn btn-sm rentBtn">반납하기</button></td>
+            <td><button class="btn btn-sm rentBtn" type="button" th:data-date="${dto.id}">연장하기</button></td>
+            <td><button class="btn btn-sm rentBtn" th:data-id="${dto.id}">반납하기</button></td>
           </tr>
         </tbody>
       </table>
       <!-- 목록 -->
+      </section>
     </div>
 
   </body>

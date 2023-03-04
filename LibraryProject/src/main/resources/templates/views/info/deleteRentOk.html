@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<script th:if="${result != 1}">
+     alert("반납 실패");
+     history.back();
+  </script>
+<script th:if="${result == 1}">
+     alert("반납되었습니다.");
+     location.href = "rent";
+  </script>
+</html>
